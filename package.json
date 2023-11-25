@@ -1,0 +1,59 @@
+{
+  "name": "glot-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "http://3.39.72.57",
+  "dependencies": {
+    "@react-pdf/renderer": "^3.1.14",
+    "@tanstack/react-query": "^5.0.0",
+    "@tanstack/react-query-devtools": "^5.0.0",
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "antd": "^5.10.0",
+    "axios": "^1.5.1",
+    "dayjs": "^1.11.10",
+    "html2canvas": "^1.4.1",
+    "html2pdf.js": "^0.10.1",
+    "jspdf": "^2.5.1",
+    "react": "^18.2.0",
+    "react-beautiful-dnd": "^13.1.1",
+    "react-cookie": "^6.1.1",
+    "react-dom": "^18.2.0",
+    "react-query": "^3.39.3",
+    "react-router-dom": "^6.16.0",
+    "react-scripts": "5.0.1",
+    "react-slick": "^0.29.0",
+    "react-to-print": "^2.14.15",
+    "recoil": "^0.7.7",
+    "recoil-persist": "^5.1.0",
+    "slick-carousel": "^1.8.1",
+    "styled-components": "^6.0.8",
+    "textarea-caret": "^3.1.0",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
