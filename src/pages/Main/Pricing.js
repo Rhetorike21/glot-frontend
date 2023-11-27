@@ -45,7 +45,7 @@ export default function Pricing() {
                 <TitleArea>
                     <Title>
                         <TitleSentence>
-                            <div className='bold'>GLOT AI.&nbsp;</div>선택하고 변형하여{'\n'}
+                            <div className='bold'>GLOT Writing.&nbsp;</div>선택하고 변형하여{'\n'}
                         </TitleSentence>
                         <TitleSentence>
                             완성하는 텍스트(text)의 작문
@@ -53,7 +53,7 @@ export default function Pricing() {
                     </Title>
                     <Button
                         onClick={() => {
-                            window.open("http://localhost:3000/writing", "_blank");
+                            window.open("http://3.39.72.57/writing", "_blank");
                         }}
                     >
                         무료 체험하기
@@ -70,13 +70,13 @@ export default function Pricing() {
                 </TitleArea>
                 <ContentArea>
                     <Sentence>
-                        <div className="highlight">하나</div>, 원하는 문장을 입력하고 GLOT AI와 함께 다음 문장을 이어가요.{'\n'}
+                        <div className="highlight">하나</div>, 원하는 문장을 입력하고 GLOT Writing과 함께 다음 문장을 이어 가요.{'\n'}
                     </Sentence>
                     <Sentence>
-                        <div className='highlight'>둘</div>, GLOT AI와 함께 작문하면서 글의 방향에 대하여 코칭을 받아요.{'\n'}
+                        <div className='highlight'>둘</div>, GLOT Writing과 함께 작문하면서 GLOT Writing으로부터 글의 방향에 대한 코칭을 받아요.{'\n'}
                     </Sentence>
                     <Sentence>
-                        <div className='highlight'>셋</div>, 완성된 작문 내용을 PDF로 다운로드를 받아요.
+                        <div className='highlight'>셋</div>, 완성된 작문을 PDF 형식으로 다운로드를 받아요.
                     </Sentence>
                 </ContentArea>
                 <ImageArea>
@@ -139,16 +139,16 @@ export default function Pricing() {
                             ✔️ 작문 입력 <Small>(글자 수 무제한)</Small>{'\n'}
                             {'\n'}
                             {'\n'}
-                            ✔️ GLOT AI 작문 코칭 제공{'\n'}
-                            {'\n'}
-                            {'\n'}
-                            ✔️ 작문 내역 메모리 제공 <Small>(최근 100건 보관)</Small>{'\n'}
+                            ✔️ 작문 내역 메모리 제공 (최근 100건 보관){'\n'}
                             {'\n'}
                             {'\n'}
                             ✔️ 작문 내역 문서 다운로드 <Small>(DOC, PDF, JPG, TXT)</Small>{'\n'}
                             {'\n'}
                             {'\n'}
-                            ✔️ 작문 내역 인쇄 기능 제공
+                            ✔️ 작문 내역 인쇄 기능 제공{'\n'}
+                            {'\n'}
+                            {'\n'}
+                            ✔️ 연 요금제 30% 할인 혜택 적용
                         </BannerContent>
                         <ButtonContent>
                             <CheckButton
@@ -182,12 +182,13 @@ export default function Pricing() {
                                 Everything in Plus.
                             </Bold>{'\n'}
                             {'\n'}
+                            {'\n'}
                             ✔️ 교육 기관 가입 요금제{'\n'} 
                             <Small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(10개 이상의 계정 단체 등록 시 혜택 적용)</Small>{'\n'}
                             {'\n'}
                             {'\n'}
                             ✔️ 교육 전용 계정 할인 적용{'\n'}
-                            <Small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(월 기준 20%, 연 기준 30% 혜택 적용 - %는 임의)</Small>
+                            <Small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(월 기준 20%, 연 요금제 30% 할인 혜택 적용)</Small>
                         </BannerContent>
                         <ButtonContent>
                             <CheckButton
@@ -287,7 +288,7 @@ const ContentArea = styled.div`
 const Sentence = styled.div`
     width: 100%;
     font-size: 24px;
-    font-weight: 600;
+    font-weight: 500;
     line-height: 52.8px;
     letter-spacing: -0.03em;
     color: rgba(60, 61, 63, 1);

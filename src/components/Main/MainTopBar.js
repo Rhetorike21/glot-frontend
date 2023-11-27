@@ -44,34 +44,26 @@ export default function TopBar() {
                             onClick={() => onClickMenu('About')} 
                             active={isMenuActive('About')}
                             style={{
-                                width: '100px',
+                                marginLeft: '0px',
                             }}
                         >
-                            레토리케 소개
+                            GLOT과 AI
                         </MainTopBarMenuButton>
                         <MainTopBarMenuButton
                             onClick={() => onClickMenu('GLOT AI')} 
                             active={isMenuActive('GLOT AI')}
-                            style={{
-                                width: '70px',
-                                marginLeft: '56px',
-                            }}
                         >
-                            GLOT AI
+                            GLOT Writing
                         </MainTopBarMenuButton>
                         <MainTopBarMenuButton
                             onClick={() => onClickMenu('Pricing')} 
                             active={isMenuActive('Pricing')}
-                            style={{
-                                width: '65px',
-                                marginLeft: '56px',
-                            }}
                         >
                             Pricing
                         </MainTopBarMenuButton>
                     </MainTopBarMenuList>
                     <MainTopBarStartBtn onClick={onClickStart}>
-                        GLOT AI 시작하기
+                        GLOT Writing 시작하기
                     </MainTopBarStartBtn>
                 </MainTopBarMenu>
             </MainTopBarContainer>
@@ -89,7 +81,7 @@ const MainTopBarOuter = styled.div`
 `;
 
 const MainTopBarContainer = styled.div`
-    width: 80%;
+    width: 78%;
     height: 80px;
     display: flex;
     justify-content: flex-start;
@@ -122,8 +114,10 @@ const MainTopBarMenuList = styled.div`
 `;
 
 const MainTopBarMenuButton = styled.div`
+    margin-left: 56px;
     font-size: 18px;
     font-weight: ${props => props.active ? 'bold' : 'normal'};
+    letter-spacing: -0.3px;
     cursor: pointer;
     color: #ffffff;
 `;
@@ -137,4 +131,5 @@ const MainTopBarStartBtn = styled.button`
     font-size: 17px;
     font-weight: 700;
     cursor: pointer;
+    letter-spacing: -0.3px;
 `;

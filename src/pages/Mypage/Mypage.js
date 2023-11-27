@@ -1,26 +1,33 @@
 import React,{ useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useCookies } from "react-cookie";
+import { useRecoilState } from "recoil";
+import { UserType, LoginState } from "../../recoil/Atom";
 import styled from "styled-components";
-import { useRecoilValue } from "recoil";
-import { UserType } from "../../recoil/Atom";
 
 import Header from "../../components/Header";
 
 import MyInfoApi from "../../services/MyInfo";
 import MyInfoEditApi from "../../services/MyInfoEdit";
+import LogoutApi from "../../services/Logout";
+import MobileApi from "../../services/MobileAuth";
+import MobileCheckApi from "../../services/MobileAuthCode";
 
 export default function Mypage() {
     const navigate = useNavigate();
     const location = useLocation();
 
-    const userType = useRecoilValue(UserType);
+    const [userType, setUserType] = useRecoilState(UserType);
+    const [loginState, setLoginState] = useRecoilState(LoginState);
     const [myInfo, setMyInfo] = useState({});
     const [nameEditing, setNameEditing] = useState(false);
     const [phoneEditing, setPhoneEditing] = useState(false);
     const [mobileEditing, setMobileEditing] = useState(false);
     const [emailEditing, setEmailEditing] = useState(false);
     const [pwEditing, setPwEditing] = useState(false);
+    const [mobileAuthCode, setMobileAuthCode] = useState('');
+    const [auth, setAuth] = useState(false);
+    const [cookies, setCookie, removeCookie] = useCookies(); // 이 부분을 여기로 이동
 
     const onClickGroupInfo = () => {
         if(userType === 'SUBSCRIBED') {
@@ -75,6 +82,45 @@ export default function Mypage() {
         catch (error) {
             console.log(error);
         }
+    }
+
+    const onClickAuth = async () => {
+        try {
+            const response = await MobileApi(myInfo.mobile);
+            setAuth(true);
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
+
+    const onClickAuthCode = async () => {
+        try {
+            const response = await MobileCheckApi(mobileAuthCode);
+            setAuth(false);
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
+
+    const handleLogout = async () => {
+        try {
+            const auth = localStorage.getItem('token');
+            const refresh = cookies.token;
+            await LogoutApi(auth, refresh);
+        } catch (error) {
+          console.error('로그아웃 중 오류 발생:', error);
+        }
+        removeCookie('token');
+        localStorage.removeItem('token');
+        setLoginState(false);
+        setUserType('FREE');
+        navigate('/');
+      };
+    
+    const onClickLogout = () => {
+        window.confirm('로그아웃 하시겠습니까?') && handleLogout();
     }
 
     return (
@@ -184,9 +230,15 @@ export default function Mypage() {
                                 disabled={!mobileEditing}
                             />
                             {mobileEditing? (
-                                <ButtonArea>
-                                    <EditButton style={{color: 'rgba(183, 184, 186, 1)'}} onClick={() => {setMobileEditing(false)}}>취소</EditButton>
-                                    <EditButton onClick={() => {setMobileEditing(false)}}>저장</EditButton>
+                                <ButtonArea
+                                    style={{
+                                        width: '150px',
+                                        left: '250px',
+                                        display: auth ? 'none' : 'flex',
+                                    }}
+                                >
+                                    <EditButton onClick={onClickAuth}>인증번호 발송</EditButton>
+                                    <EditButton onClick={() => {setMobileEditing(false)}} style={{color: 'rgba(183, 184, 186, 1)'}}>취소</EditButton>
                                 </ButtonArea>
                             ):(
                                 <ButtonArea
@@ -197,6 +249,23 @@ export default function Mypage() {
                                     <EditButton onClick={() => {setMobileEditing(true)}}>수정</EditButton>
                                 </ButtonArea>
                             )}
+                            <DataBox
+                                placeholder="인증번호를 입력하세요."
+                                value={mobileAuthCode}
+                                onChange={(e) => setMobileAuthCode(e.target.value)}
+                                //auth가 true일 때만 보이기
+                                style={{
+                                    display: auth ? 'block' : 'none',
+                                }}
+                            />
+                            <ButtonArea
+                                style={{
+                                    display: auth ? 'flex' : 'none',
+                                }}
+                            >
+                                <EditButton onClick={onClickAuthCode}>인증</EditButton>
+                                <EditButton onClick={() => {setAuth(false)}} style={{color: 'rgba(183, 184, 186, 1)'}}>취소</EditButton>
+                            </ButtonArea>
                         </InputArea>
                         <InputArea>
                             <InputName>이메일</InputName>
@@ -256,6 +325,11 @@ export default function Mypage() {
                                 </ButtonArea>
                             )}
                         </InputArea>
+                        <BottomArea>
+                            <Button onClick={onClickLogout}>
+                                로그아웃
+                            </Button>
+                        </BottomArea>
                     </InnerContainer>
                 </InnerContent>
             </Content>
@@ -397,4 +471,23 @@ const EditButton = styled.div`
     color: rgba(50, 144, 255, 1);
     cursor: pointer;
     margin-right: 16px;
+`;
+
+const BottomArea = styled.div`
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    margin-top: 20px;
+`;
+
+const Button = styled.div`
+    font-size: 16px;
+    font-weight: 600;
+    color: rgba(50, 144, 255, 1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
 `;

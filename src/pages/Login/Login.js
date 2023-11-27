@@ -103,7 +103,6 @@ export default function Login() {
                             value={userId}
                             onChange={(e) => setUserId(e.target.value)}
                             ref={inputRef}
-                            disabled={isModalOpen}
                         >
                         </Input>
                     </InputContainer>
@@ -117,7 +116,6 @@ export default function Login() {
                             value={userPw}
                             onChange={(e) => setUserPw(e.target.value)}
                             onKeyDown={(e) => activeEnter(e)}
-                            disabled={isModalOpen}
                         >
                         </Input>
                     </InputContainer>

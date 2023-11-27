@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
-import dayjs, { Dayjs } from 'dayjs';
-import makePdf from './Download';
+import domtoimage from 'dom-to-image';
+import { saveAs } from 'file-saver';
 import { useReactToPrint } from 'react-to-print';
 import getCaretCoordinates from 'textarea-caret';
 
@@ -24,6 +24,8 @@ import open from '../../asset/open.png';
 
 export default function Writing() {
     const [isSideBarOpen, setIsSideBarOpen] = useState(true); // 사이드바 제어
+    const [sidebarHeight, setSidebarHeight] = useState(0); // 사이드바 높이
+    const [contentInputHeight, setContentInputHeight] = useState(0); // 작문 내용 높이
     const [showSaveNoticeModal, setShowSaveNoticeModal] = useState(false); // 작문 저장 여부(모달창 제어)
     const [isSlashTyped, setIsSlashTyped] = useState(false); // '/' 문자 입력 여부(모달창 제어)
     const [isVersionNotified, setIsVersionNotified] = useState(false); // 버전 업데이트 알림 여부(모달창 제어)
@@ -98,6 +100,10 @@ export default function Writing() {
         }
     }, [writingId]);
 
+    useEffect(() => {
+        setSidebarHeight(contentInputHeight + 213);
+    }, [contentInputHeight]);
+
     // ContentInput애서 caret의 위치를 알아내는 함수
     const handleContentChange = (e) => {
         setWritingContent(e.target.value);
@@ -113,8 +119,8 @@ export default function Writing() {
             const writingAreaCoordinates = writingAreaRef.current.getBoundingClientRect();
 
             setCoordinates({
-                x: caretPos.left + writingAreaCoordinates.left,
-                y: caretPos.top + writingAreaCoordinates.top,
+                x: caretPos.left + writingAreaCoordinates.left + 40,
+                y: caretPos.top + writingAreaCoordinates.top + 130,
             });
         }
         else {
@@ -122,6 +128,13 @@ export default function Writing() {
         }
     };
 
+    // ContentInput의 높이를 자동으로 조절하는 함수
+    const handleTextAreaResize = (e) => {
+        const textarea = e.target;
+        textarea.style.height = 'auto';
+        textarea.style.height = `${textarea.scrollHeight}px`;
+        setContentInputHeight(textarea.scrollHeight);
+    };
 
     // 작문 옵션 선택 시 작문 내용에 추가
     useEffect(() => {
@@ -160,18 +173,31 @@ export default function Writing() {
         }
     }, [writingContent]);
 
+    //jpg로 저장
+    const onClickSaveAsJpg = () => {
+        domtoimage
+        .toBlob(document.querySelector('#writing'))
+        .then((blob) => {
+            saveAs(blob, `${writingTitle}.jpg`);
+        });
+    };
+
     //인쇄
     const onClickPrint = useReactToPrint({
         content: () => writingAreaRef.current,
-        documentTitle: `${writingTitle}_${dayjs().format('YYYYMMDDHHmmss')}`,
+        documentTitle: `${writingTitle}`,
+        pageStyle: `
+            @page {
+                size: A4;
+                margin: 20;
+            }
+            @media print {
+                body {
+                    margin: 0;
+                }
+            }
+        `,
     });
-
-    const pdf = makePdf();
-
-    const onClickPdf = async(e) => {
-        e.preventDefault()
-        await pdf.viewWithPdf()
-    }
 
     // 작문 저장
     const onClickSave = () => {
@@ -213,15 +239,17 @@ export default function Writing() {
                 <Content>
                     <SideBar
                         isSideBarOpen={isSideBarOpen}
-                        setIsSideBarOpen={setIsSideBarOpen} 
+                        setIsSideBarOpen={setIsSideBarOpen}
+                        sidebarHeight={sidebarHeight}
                         writingList={writingList}
                         setWritingList={setWritingList}
                         writingListUpdate={writingListUpdate}
                         setWritingListUpdate={setWritingListUpdate}
                         onClickPrint={onClickPrint}
+                        onClickSaveAsJpg={onClickSaveAsJpg}
                     />
                     <InnerContainer isSideBarOpen={isSideBarOpen}>
-                        <WritingArea isSideBarOpen={isSideBarOpen}>
+                        <WritingArea isSideBarOpen={isSideBarOpen} ref={writingAreaRef} userType={userType} id='writing'>
                             <TitleArea>
                                 <TitleInput
                                     type="text"
@@ -230,13 +258,13 @@ export default function Writing() {
                                     onChange={(e) => setWritingTitle(e.target.value)}
                                 />
                             </TitleArea>
-                            <ContentArea ref={writingAreaRef}>
+                            <ContentArea>
                                 <ContentInput
                                     placeholder="문장을 입력하여 작문을 시작해보세요!"
                                     value={writingContent}
                                     onChange={handleContentChange}
+                                    onInput={handleTextAreaResize}
                                     disabled={isVersionNotified}
-                                    id='writing'
                                 />
                             </ContentArea>
                         </WritingArea>
@@ -260,7 +288,7 @@ export default function Writing() {
                                 }}
                             />
                         </Button>
-                        <WritingArea isSideBarOpen={isSideBarOpen}>
+                        <WritingArea isSideBarOpen={isSideBarOpen} userType={userType} id='writing'>
                             <TitleArea>
                                 <TitleInput
                                     type="text"
@@ -274,8 +302,8 @@ export default function Writing() {
                                     placeholder="문장을 입력하여 작문을 시작해보세요!"
                                     value={writingContent}
                                     onChange={handleContentChange}
+                                    onInput={handleTextAreaResize}
                                     disabled={isVersionNotified}
-                                    id='writing'
                                 />
                             </ContentArea>
                         </WritingArea>
@@ -298,7 +326,8 @@ export default function Writing() {
 
 const Container = styled.div`
     width: 100%;
-    height: 100vh;
+    height: 100%;
+    min-height: 100vh;
     background-color: #F2F3F5;
     display: flex;
     flex-direction: column;
@@ -311,19 +340,17 @@ const Content = styled.div`
     height: calc(100% - 80px); /* 80은 헤더의 높이 */
     display: flex;
     flex-direction: row;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-start;
 `;
 
 const InnerContainer = styled.div`
-    height: 100%;
     width: ${props => (props.isSideBarOpen ? 'calc(100% - 230px)' : '100%')};
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     background-color: #f2f3f5;
-    animation: 0.3s ease-in-out;
 `;
 
 const Button = styled.button`
@@ -346,11 +373,14 @@ const Button = styled.button`
 const WritingArea = styled.div`
     width: 598px;
     height: 100%;
+    min-height: ${props => (props.userType) === 'FREE' ? 'calc(100vh - 167px)' : 'calc(100vh - 217px)'};
+    flex: 1;
     background-color: #FFFFFF;
     border: none;
     display: flex;
     flex-direction: column;
     padding: 48px;
+    padding-bottom: 0px;
     margin-top: 24px;
     overflow: auto;
     animation: 0.3s ease-in-out;
@@ -377,34 +407,35 @@ const TitleInput = styled.input`
 
 const ContentArea = styled.div`
     width: 100%;
-    height: 100%;
 `; 
 
 const ContentInput = styled.textarea`  
     width: 100%;
     height: 100%;
+    min-height: calc(100vh - 297px);
     border: none;
     outline: none;
     font-size: 16px;
     font-weight: 400;
     line-height: 28.8px;
-    resize: none;
     white-space: pre-line;
+    resize: none;
     &::placeholder {
         color: rgba(218, 219, 221, 1);
     }
 `;
 
+
 const ButtonArea = styled.div`
     width: 694px;
-    height: 80px;
+    height: 60px;
     background-color: #FFFFFF;
     border-top: 1px solid rgba(239, 239, 239, 1);
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    //display: ${props => (props.userType === 'FREE' ? 'none' : 'flex')};
+    display: ${props => (props.userType === 'FREE' ? 'none' : 'flex')};
 `;
 
 const SaveButton = styled.button`
@@ -417,44 +448,4 @@ const SaveButton = styled.button`
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
-`;
-
-const PrintArea = styled.div`
-    width: 100%;
-    height: 100%;
-    display: none;
-`;
-
-const Paper = styled.div`
-    height: 842px;
-    width: 595px;
-    margin: 30px;
-    background-color: white;
-    text-align: center;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-`;
-
-const PaperTitle = styled.div`
-    width: 100%;
-    height: 50px;
-    font-size: 30px;
-    font-weight: 600;
-    line-height: 42px;
-    text-align: center;
-    color: rgba(17, 17, 17, 1);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-`;
-
-const PaperContent = styled.div`
-    width: 100%;
-    height: 100%;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 28.8px;
-    letter-spacing: -0.03em;
-    text-align: left;
-    color: rgba(17, 17, 17, 1);
-    padding: 48px;
-    white-space: pre-line;
 `;

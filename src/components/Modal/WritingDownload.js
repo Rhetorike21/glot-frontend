@@ -27,6 +27,11 @@ export default function WritingDownload(props) {
         props.setIsOpenDownload(false);
     }
 
+    const onClickJPG = () => {
+        props.onClickSaveAsJpg();
+        props.setIsOpenDownload(false);
+    }
+
     const onClickDelete = () => {
         if (window.confirm('정말 삭제하시겠습니까?')) {
             WritingDeleteApi(writingId)
@@ -64,13 +69,17 @@ export default function WritingDownload(props) {
                     </SelectIcon>
                     <SelectTitle>Word 다운로드</SelectTitle>
                 </SelectContent>
-                <SelectContent>
+                <SelectContent
+                    onClick={onClickPrint}
+                >
                     <SelectIcon>
                         <img src={pdf} alt="pdf"/>
                     </SelectIcon>
                     <SelectTitle>PDF 다운로드</SelectTitle>
                 </SelectContent>
-                <SelectContent>
+                <SelectContent
+                    onClick={onClickJPG}
+                >
                     <SelectIcon>
                         <img src={jpg} alt="jpg"/>
                     </SelectIcon>

@@ -68,7 +68,6 @@ const Container = styled.div`
     justify-content: space-between;
     border: 1px solid rgba(242, 243, 245, 1);
     box-shadow: 0px 3px 7px 0px #00000008;
-    z-index: 999;
 `;
 
 const LogoArea = styled.div`

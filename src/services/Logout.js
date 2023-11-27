@@ -2,21 +2,20 @@
 
 import axios from 'axios';
 import { BASE_URL } from '../constants/Url';
-import { useCookies } from 'react-cookie';
 
-const LogoutApi = async () => {
-    const [cookies, setCookie, removeCookie] = useCookies(['token']);
+const LogoutApi = async (auth, refresh) => {
 
     try {
         const response = await axios.post(
             `${BASE_URL}/auth/logout`,
             {
                 headers: {
-                    auth: localStorage.getItem('token'),
-                    refresh: cookies.token,
+                    auth: auth,
+                    refresh: refresh,
                 },
             },
         );
+
         return response.data;
     } catch (error) {
         console.log(error);

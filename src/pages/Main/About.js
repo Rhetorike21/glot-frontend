@@ -29,8 +29,7 @@ export default function About() {
     const navigate = useNavigate();
 
     const onClickStart = () => {
-        // window.open("http://localhost:3000/writing", "_blank");
-        navigate('/writing');
+        window.open("http://3.39.72.57/writing", "_blank");
     }
 
     return (
@@ -41,7 +40,7 @@ export default function About() {
                     <MainText>
                         <Title>
                             Save your time on Writing.{'\n'}
-                            and then Invest your time{'\n'}
+                            And then Invest your time{'\n'}
                             in realizing ideal.
                         </Title>
                         <Description>
@@ -64,7 +63,7 @@ export default function About() {
             </BackgroundImg>
             <MainDescription>
                 <MainDescriptionTitle>
-                    텍스트 해석의 개척자. GLOT
+                    1. 텍스트 해석의 개척자. GLOT
                 </MainDescriptionTitle>
                 <MainDescriptionContent>
                     General Logic Of Text
@@ -81,22 +80,10 @@ export default function About() {
                     src={slide3}
                 >
                 </MainDescriptionContainer>
-                <Button>
-                    PDF 다운로드
-                    <img 
-                        src={blueVector}
-                        alt='vector'
-                        style={{
-                            width: '18px',
-                            height: '15px',
-                            marginLeft: '20px',
-                        }}
-                    />
-                </Button>
             </MainDescription>
             <MainImgArea>
                 <MainImgTitle>
-                    GLOT<Small>(General Logic Of Text)</Small>에{'\n'}
+                    3. GLOT<Small>(General Logic Of Text)</Small>에{'\n'}
                     인공 지능<Small>(AI)</Small>을 입히다.
                 </MainImgTitle>
                 <MainImgContent>
@@ -117,7 +104,13 @@ export default function About() {
                     </MainImgContentOuter>
                 </MainImgContent>
                 <MainImgButtonArea>
-                    <MainImgButton>
+                    <MainImgButton
+                        onClick={() => {
+                            navigate('/glotai')
+                            window.scrollTo(0, 0);
+                            }                        
+                        }
+                    >
                         GLOT AI 더 알아보기
                         <img 
                             src={whiteVector}
@@ -131,18 +124,7 @@ export default function About() {
                     </MainImgButton>
                 </MainImgButtonArea>
             </MainImgArea>
-            <MainSlideArea>
-                <MainSlideText>
-                    <MainSlideTitle>
-                        똑똑한 글쓰기 파트너,{`\n`}
-                        GLOT Writing
-                    </MainSlideTitle>
-                    <MainSlideSubTitle>
-                        General Logic of Text Writing
-                    </MainSlideSubTitle>
-                </MainSlideText>
-                <MainCarousal/>
-            </MainSlideArea>
+            <MainCarousal/>
             <MainBannerArea
                 style={{
                     backgroundImage: `url(${banner1})`,
@@ -175,7 +157,7 @@ export default function About() {
                 }}
             >
                 <BottomBannerText>
-                    레토리케에 궁금한 점을 바로 문의할 수 있어요!
+                    레토리케는 GLOT을 인공 지능(AI)로 만들어 전 세계 모든 사람들에게 보급하려고 합니다.
                 </BottomBannerText>
             </MainBannerArea>
             <MainFooter/>
@@ -355,8 +337,9 @@ const MainDescriptionTitle = styled.div`
     justify-content: center;
     text-align: center;
     font-size: 48px;
-    font-weight: 700;
+    font-weight: 600;
     margin-top: 112px;
+    letter-spacing: -0.05em;
     @media (max-width: 781px) {
         font-size: 38px;
         font-weight: 700;
@@ -385,6 +368,7 @@ const MainDescriptionContent = styled.div`
     margin-top: 16px;
     margin-bottom: 56px;
     color: rgba(210, 220, 240, 1);
+    letter-spacing: -0.05em;
     @media (max-width: 591px) {
         font-size: 26px;
         font-weight: 700;
@@ -454,7 +438,7 @@ const MainImgArea = styled.div`
 const MainImgTitle = styled.div`
     width: 100%;
     font-size: 48px;
-    font-weight: 700;
+    font-weight: 600;
     line-height: 62px;
     letter-spacing: -0.03em;
     text-align: center;
@@ -543,77 +527,6 @@ const MainImgButton = styled.div`
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-`;
-
-const MainSlideArea = styled.div`
-    width: 100%;
-    height: 100%;
-    background-color: rgba(238, 246, 255, 1);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-`;
-
-const MainSlideText = styled.div`
-    width: 100%;
-    height: 100px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    margin-top: 104px;
-    margin-bottom: 104px;
-    @media (max-width: 781px) {
-        margin-top: 64px;
-        margin-bottom: 64px;
-    }
-    @media (max-width: 591px) {
-        margin-top: 32px;
-        margin-bottom: 32px;
-    }
-`;
-
-const MainSlideTitle = styled.div`
-    font-size: 48px;
-    font-weight: 700;
-    line-height: 67px;
-    letter-spacing: -0.05em;
-    text-align: left;
-    letter-spacing: -0.03em;
-    text-align: center;
-    white-space: pre-line;
-    color: rgba(17, 17, 17, 1);
-    @media (max-width: 781px) {
-        font-size: 32px;
-        font-weight: 700;
-        line-height: 32px;
-    }
-    @media (max-width: 591px) {
-        font-size: 28px;ß
-        line-height: 32px;
-
-    }
-`;
-
-const MainSlideSubTitle = styled.div`
-    font-size: 20px;
-    font-weight: 700;
-    line-height: 28px;
-    letter-spacing: -0.05em;
-    text-align: center;
-    white-space: pre-line;
-    color: rgba(210, 220, 240, 1);
-    @media (max-width: 781px) {
-        font-size: 16px;
-        font-weight: 700;
-        line-height: 32px;
-    }
-    @media (max-width: 591px) {
-        font-size: 14px;
-        line-height: 32px;
-    }
-
 `;
 
 const MainBannerArea = styled.div`

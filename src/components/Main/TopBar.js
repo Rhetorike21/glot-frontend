@@ -44,34 +44,26 @@ export default function TopBar() {
                             onClick={() => onClickMenu('About')} 
                             active={isMenuActive('About')}
                             style={{
-                                width: '100px',
+                                marginLeft: '0px',
                             }}
                         >
-                            레토리케 소개
+                            GLOT과 AI
                         </MainTopBarMenuButton>
                         <MainTopBarMenuButton
                             onClick={() => onClickMenu('GLOT AI')} 
                             active={isMenuActive('GLOT AI')}
-                            style={{
-                                width: '70px',
-                                marginLeft: '56px',
-                            }}
                         >
-                            GLOT AI
+                            GLOT Writing
                         </MainTopBarMenuButton>
                         <MainTopBarMenuButton
                             onClick={() => onClickMenu('Pricing')} 
                             active={isMenuActive('Pricing')}
-                            style={{
-                                width: '65px',
-                                marginLeft: '56px',
-                            }}
                         >
                             Pricing
                         </MainTopBarMenuButton>
                     </MainTopBarMenuList>
                     <MainTopBarStartBtn onClick={onClickStart}>
-                        GLOT AI 시작하기
+                        GLOT Writing 시작하기
                     </MainTopBarStartBtn>
                 </MainTopBarMenu>
             </MainTopBarContainer>
@@ -82,15 +74,14 @@ export default function TopBar() {
 const MainTopBarOuter = styled.div`
     width: 100%;
     height: 80px;
-    border-bottom: 1px solid rgba(242, 243, 245, 1);
-    background-color: #FFFFFF;
+    background-color: transparent;
     display: flex;
     justify-content: center;
     align-items: center;
 `;
 
 const MainTopBarContainer = styled.div`
-    width: 80%;
+    width: 78%;
     height: 80px;
     display: flex;
     justify-content: flex-start;
@@ -103,7 +94,6 @@ const MainTopBarLogo = styled.img`
     font-size: 30px;
     font-weight: bold;
     cursor: pointer;
-    color: #000000;
 `;
 
 const MainTopBarMenu = styled.div`
@@ -124,13 +114,16 @@ const MainTopBarMenuList = styled.div`
 `;
 
 const MainTopBarMenuButton = styled.div`
+    margin-right: 56px;
     font-size: 18px;
     font-weight: ${props => props.active ? 'bold' : 'normal'};
+    letter-spacing: -0.3px;
     cursor: pointer;
+    color: rgba(17, 17, 17, 1);
 `;
 
 const MainTopBarStartBtn = styled.button`
-    padding: 13px 12px;
+    padding: 13px;
     border: none;
     border-radius: 10px;
     background-color: rgba(50, 144, 255, 1);
@@ -138,4 +131,5 @@ const MainTopBarStartBtn = styled.button`
     font-size: 17px;
     font-weight: 700;
     cursor: pointer;
+    letter-spacing: -0.3px;
 `;

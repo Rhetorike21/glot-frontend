@@ -19,8 +19,7 @@ export default function GlotAi() {
     const navigate = useNavigate();
 
     const onClickStart = () => {
-        // window.open("http://localhost:3000/writing", "_blank");
-        navigate('/writing');
+        window.open("http://3.39.72.57/writing", "_blank");
     }
 
     return(
@@ -28,8 +27,12 @@ export default function GlotAi() {
             <TopBar />
             <MainBanner>
                 <Title>
-                    통찰력과 GLOT(General Logic of Text)의 만남,{"\n"}
-                    생산적인 글쓰기, 높아지는 논리력
+                    <TitleSentence>
+                    GLOT(General Logic Of Text)과{"\n"}
+                    </TitleSentence>
+                    <TitleSentence>
+                    인공 지능(AI)과 작문의 만남,<div className='bold'>&nbsp;GLOT Writing</div>
+                    </TitleSentence>
                 </Title>
                 <Button
                     onClick={onClickStart}
@@ -48,60 +51,6 @@ export default function GlotAi() {
             </MainBanner>
             <MainContent>
                 <ContentBackground>
-                    {/* <MainBox>
-                        <BoxContent
-                            style={{
-                                marginBottom: '100px',
-                            }}
-                        >
-                            <BoxTitle>
-                                작성자가 주도적으로 글 리드(lead)하는.
-                            </BoxTitle>
-                            <BoxDescription>
-                                다음 문장을 이어가는 것이 어렵다면 '클릭(click)'하세요.{'\n'}
-                                학습자는 발전형, 반대형, 결론형을 선택하여{'\n'}
-                                글의 방향을 주도적으로 이어갈 수 있습니다.
-                            </BoxDescription>
-                        </BoxContent>
-                        <BoxImage/>
-                    </MainBox>
-                    <MainBox>
-                        <BoxImage
-                            style={{
-                                width: '368px',
-                                height: '306px',
-                                marginRight: '100px',
-                            }}
-                        />
-                        <BoxContent
-                            style={{
-                                width: '566px',
-                                height: '205px',
-                                marginBottom: '160px',
-                            }}
-                        >
-                            <BoxTitle
-                                style={{
-                                    textAlign: 'right',
-                                }}
-                            >
-                            스마트(smart)한 문장 추천.
-                            </BoxTitle>
-                            <BoxDescription
-                                style={{
-                                    textAlign: 'right',
-                                }}
-                            >
-                                글을 쉽게 이어나가고 싶으신가요?{'\n'}
-                                GLOT(General Logic of Text) 인공 지능(AI)은{'\n'}
-                                문장의 논리 구조를 분석하여 다음에 이어질 수 있는 문장을 추천해드립니다.{'\n'} 
-                                마음에 드는 문장을 클릭(click) 하세요.
-                            </BoxDescription>
-                        </BoxContent>
-                    </MainBox>
-                    <MainBox>
-                     
-                    </MainBox> */}
                     <img src={background} alt='background' style={{width: '100%', height: '100%'}}/>
                 </ContentBackground>
                 <MainText>
@@ -118,21 +67,23 @@ export default function GlotAi() {
                     <Text
                         style={{
                             fontSize: '32px',
-                            fontWeight: '700',
+                            fontWeight: '600',
                             color: 'rgba(50, 144, 255, 1)'
                         }}
                     >
-                        GLOT Writing은 글을 작성하는 동안 글쓰기의 노하우를 전달합니다.{'\n'}
+                        셋, 작성해 놓은 문장의 논리적인 구조를 분석하여 다음에{'\n'}
+                        이어질 수 있는 문장들을 순차적으로 추천해 주는 GLOT Writing
                     </Text>
                     <Text
                         style={{
                             fontSize: '24px',
-                            fontWeight: '700',
+                            fontWeight: '600',
                             color: 'rgba(60, 61, 63, 1)'
                         }}
                     >
-                        사용자가 주도적으로 글을 작성하는 동안 앞으로 이어질 글의 방향,{"\n"}
-                        문장과 문장, 문단과 문단의 관계에 대하여 가이드(guide)를 제공합니다.{'\n'}
+                        다음 문장을 논리적으로 이어 가는 것이 어렵다면, 클릭(Click)하세요. 클릭(Click)하시면,{'\n'}
+                        GLOT Writing은 작성자가 주도적으로 글을 작성하는 동안 앞으로 전개될 글의 방향, 문장{'\n'}
+                        과 문장 혹은 문단과 문단 간의 관계에 대한 가이드(guide)를 제공해 줍니다.
                     </Text>
                 </MainText>
                 <MainBox
@@ -180,7 +131,7 @@ export default function GlotAi() {
                 }}
             >
                 <BannerText>
-                    GLOT App Download
+                    GLOT Writing App Download
                 </BannerText>
                 <ButtonArea>
                     <DownButton>
@@ -218,12 +169,23 @@ const MainBanner = styled.div`
 const Title = styled.div`
     width: 552px;
     height: 78px;
-    font-size: 28px;
-    font-weight: 700;
+`;
+
+const TitleSentence = styled.div`
+    width: 100%;
+    font-size: 30px;
+    font-weight: 500;
+    line-height: 42px;
     letter-spacing: -0.03em;
-    color: #FFFFFF;
     text-align: left;
+    color: #FFFFFF;
     white-space: pre-line;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    div.bold {
+        font-weight: 700;
+    }
 `;
 
 const Button = styled.div`
@@ -269,35 +231,6 @@ const BoxContent = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-`;
-
-const BoxTitle = styled.div`
-    font-size: 32px;
-    font-weight: 600;
-    line-height: 44.8px;
-    letter-spacing: -0.03em;
-    color: rgba(60, 61, 63, 1);
-    text-align: left;
-`;
-
-const BoxDescription = styled.div`
-    font-size: 20px;
-    font-weight: 500;
-    line-height: 36px;
-    letter-spacing: -0.03em;
-    color: rgba(60, 61, 63, 1);
-    text-align: left;
-    white-space: pre-line;
-    margin-top: 16px;
-`;
-
-const BoxImage = styled.div`
-    width: 649px;
-    height: 461px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 62px;
 `;
 
 const MainText = styled.div`

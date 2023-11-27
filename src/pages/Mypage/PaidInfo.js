@@ -67,7 +67,13 @@ export default function PaidInformation() {
         setIsRefundModalOpen(true);
     }
 
-    const lastDate = '2021년 10월 13일';
+    //paidInfo의 history에서 duration의 ~ 뒷부분만 가져오기
+    const lastDate = paidInfo.history && paidInfo.history.map((item, index) => {
+        return(
+            item.duration.split(' ~ ')[1]
+        )
+    }
+    )
 
     return (
         <Container>
@@ -246,6 +252,7 @@ export default function PaidInformation() {
             {isCheckModalOpen ? (
                 <StopCheckModal
                     setIsCheckModalOpen={setIsCheckModalOpen}
+                    cardNumber={paidInfo.history.cardNumber}
                     lastDate={lastDate}
                 />
             ) : null}

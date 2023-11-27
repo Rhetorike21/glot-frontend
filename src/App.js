@@ -12,7 +12,6 @@ import ChangePw from './pages/Login/ChangePw';
 import NewPw from './pages/Login/NewPw';
 import SignUp from './pages/Login/SignUp';
 import Writing from './pages/Writing/Writing';
-import Paper from './pages/Writing/WritingTest';
 
 import Mypage from './pages/Mypage/Mypage';
 import GroupInfo from './pages/Mypage/GroupInfo';
@@ -34,7 +33,6 @@ function App() {
         <Route path="/member/newpw" element={<NewPw />} />
         <Route path="/member/signup" element={<SignUp />} />
         <Route path="/writing" element={<Writing />} />
-        <Route path="/writing_paper" element={<Paper />} />
         <Route path="/mypage" element={<Mypage />} />
         <Route path="/mypage/groupinfo" element={<GroupInfo />} />
         <Route path="/mypage/paid_info" element={<PaidInfo />} />
@@ -42,7 +40,6 @@ function App() {
         <Route path="/payment/basic" element={<BasicPrice />} />
         <Route path="/payment/enterprise" element={<EnterprisePrice />} />
         <Route path="/payment" element={<Payment />} />
-        <Route path="/test" element={<Paper />} />
       </Routes>
   );
 }

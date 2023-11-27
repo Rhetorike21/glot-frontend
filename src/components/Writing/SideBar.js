@@ -164,7 +164,7 @@ export default function SideBar(props) {
 
 
     return (
-        <Container isSideBarOpen={props.isSideBarOpen}>
+        <Container isSideBarOpen={props.isSideBarOpen} sidebarHeight={props.sidebarHeight}>
             <TopArea>
                 <Title>
                     GLOT <Bold>Writing</Bold>
@@ -251,6 +251,7 @@ export default function SideBar(props) {
                     setWritingListUpdate={props.setWritingListUpdate} 
                     modalRef={modalRef}
                     onClickPrint={props.onClickPrint}
+                    onClickSaveAsJpg={props.onClickSaveAsJpg}
                 />}
         </Container>
     )
@@ -258,13 +259,14 @@ export default function SideBar(props) {
 
 const Container = styled.div`
     width: 214px;
-    height: calc(100% - 16px);
+    height: ${props => props.sidebarHeight}px;
+    min-height: calc(100vh - 80px);
     padding: 8px;
     background: rgba(252, 252, 252, 1);
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
-    justify-content: center;
     border-right: 1px solid rgba(242, 243, 245, 1);
     box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.04);
 `;
