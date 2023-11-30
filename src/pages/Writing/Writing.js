@@ -29,16 +29,17 @@ export default function Writing() {
     const [showSaveNoticeModal, setShowSaveNoticeModal] = useState(false); // 작문 저장 여부(모달창 제어)
     const [isSlashTyped, setIsSlashTyped] = useState(false); // '/' 문자 입력 여부(모달창 제어)
     const [isVersionNotified, setIsVersionNotified] = useState(false); // 버전 업데이트 알림 여부(모달창 제어)
-    const [selectOption, setSelectOption] = useRecoilState(SentenceType); // 선택한 작문 옵션
     const [isOptionSelected, setIsOptionSelected] = useState(false); // 작문 옵션 선택 여부(모달창 제어)
+    const [writingList, setWritingList] = useState([]) // 작문 리스트
+    const [writingListUpdate, setWritingListUpdate] = useState(false) // 사이드바 작문 리스트 업데이트
+    const [coordinates, setCoordinates] = useState({ x: 0, y: 0 }); // '/' 문자의 위치
+
+    const [selectOption, setSelectOption] = useRecoilState(SentenceType); // 선택한 작문 옵션
     const [selectOptionExample, setSelectOptionExample] = useRecoilState(SentenceList); // 선택한 작문 옵션의 예시 문장 배열
     const [selectSentence, setSelectSentence] = useRecoilState(Sentence); // 선택한 작문 옵션의 예시 문장
     const [writingTitle, setWritingTitle] = useRecoilState(WritingTitle); // 작문 제목
     const [writingContent, setWritingContent] = useRecoilState(WritingContent); // 작문 내용
     const [writingId, setWritingId] = useRecoilState(WritingId); // 작문 고유 id
-    const [writingList, setWritingList] = useState([]) // 작문 리스트
-    const [writingListUpdate, setWritingListUpdate] = useState(false) // 사이드바 작문 리스트 업데이트
-    const [coordinates, setCoordinates] = useState({ x: 0, y: 0 }); // '/' 문자의 위치
     const [userType, setUserType] = useRecoilState(UserType); // 유저 타입
 
     const writingAreaRef = useRef(null);
@@ -49,6 +50,10 @@ export default function Writing() {
 
     //작문보드 전체 조회(리스트)
     useEffect(() => {
+        if (userType === 'FREE') {
+            setWritingList([]);
+            return;
+        }
         WritingListApi()
             .then((response) => {
                 setWritingList(response);
@@ -113,8 +118,9 @@ export default function Writing() {
         else if (e.target.value.endsWith('/')) {
             setIsSlashTyped(true);
              // Get caret coordinates on content change
-            const textarea = document.getElementById('writing');
+            const textarea = document.getElementById('writing').querySelector('textarea');
             const caretPos = getCaretCoordinates(textarea, textarea.selectionEnd);
+
             // Get the coordinates of the writing area
             const writingAreaCoordinates = writingAreaRef.current.getBoundingClientRect();
 
@@ -138,6 +144,9 @@ export default function Writing() {
 
     // 작문 옵션 선택 시 작문 내용에 추가
     useEffect(() => {
+        if(selectOption === '') {
+            return;
+        }
         // 작문 내용에서 마지막의 '/' 문자를 제거
         const updatedContent = writingContent.endsWith('/') ? writingContent.slice(0, -1) : writingContent;
         // 선택한 옵션 문장을 추가

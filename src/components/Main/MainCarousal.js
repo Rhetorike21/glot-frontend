@@ -4,8 +4,8 @@ import 'slick-carousel/slick/slick-theme.css';
 import styled from "styled-components";
 import React from 'react';
 
-import slideImg1 from '../../asset/slide1.png';
-import slideImg2 from '../../asset/slide2.png';
+import slideImg2 from '../../asset/slide1.png';
+import slideImg1 from '../../asset/slide2.png';
 import slideImg3 from '../../asset/slide3.png';
 import slideImg4 from '../../asset/slide4.png';
 import slideImg5 from '../../asset/slide5.png';
@@ -22,30 +22,15 @@ export default function MainCarousal() {
         slidesToScroll: 1,
         centerMode: true,
         centerPadding: '10px',
-        arrows: false,
+        arrows: true,
         nextArrow: (
             <Next>
-                <img 
-                    src={next} 
-                    alt="next"
-                    style={{
-                        width: '20px',
-                        height: '20px',
-                    
-                    }}
-                />
+
             </Next>
         ),
         prevArrow: (
             <Prev>
-                 <img 
-                    src={prev} 
-                    alt="prev"
-                    style={{
-                        width: '20px',
-                        height: '20px',  
-                    }}
-                />
+                 
             </Prev>
         ),
     };
@@ -87,6 +72,11 @@ export default function MainCarousal() {
                         src={slideImg5}
                     />
                 </CarousalContent>
+                <CarousalContent>
+                    <Image
+                        src={slideImg5}
+                    />
+                </CarousalContent>
             </Slider>
         </MainSlideArea>
     );
@@ -103,6 +93,7 @@ const MainSlideArea = styled.div`
 `;
 
 const MainSlideText = styled.div`
+    width: 50%;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -110,6 +101,7 @@ const MainSlideText = styled.div`
     text-align: left;
     margin-top: 104px;
     margin-bottom: 40px;
+    margin-left: 34%;
     @media (max-width: 781px) {
         margin-top: 64px;
         margin-bottom: 64px;
@@ -127,7 +119,6 @@ const MainSlideTitle = styled.div`
     letter-spacing: -0.05em;
     text-align: left;
     letter-spacing: -0.03em;
-    text-align: center;
     white-space: pre-line;
     color: rgba(17, 17, 17, 1);
     @media (max-width: 781px) {
@@ -147,7 +138,7 @@ const MainSlideSubTitle = styled.div`
     font-weight: 700;
     line-height: 28px;
     letter-spacing: -0.05em;
-    text-align: center;
+    text-align: left;
     white-space: pre-line;
     color: rgba(210, 220, 240, 1);
     @media (max-width: 781px) {
@@ -178,13 +169,15 @@ const Image = styled.img`
 const Next = styled.div`
     position: absolute;
     top: -20%;
-    right: 20%;
+    right: 25%;
     z-index: 999;
+    content: url(${next});
 `;
 
 const Prev = styled.div`
     position: absolute;
     top: -20%;
-    left: 70%;
+    left: 72%;
     z-index: 999;
+    content: url(${prev});
 `;
