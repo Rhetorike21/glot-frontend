@@ -33,11 +33,9 @@ export default function PaidInformation() {
             .then((response) => {
                 setPaidInfo(response);
                 setIsLoading(false); // API 응답 후 로딩 상태 해제
-                console.log(response);
             })
             .catch((error) => {
                 setIsLoading(false); // 에러 발생 시도 로딩 상태 해제
-                console.log(error);
             });
     }, []);
 

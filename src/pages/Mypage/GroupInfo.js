@@ -20,7 +20,6 @@ export default function GroupInfo() {
         const getAccountList = async () => {
             try {
                 const response = await AccountListApi();
-                console.log(response)
                 setMemberList(response.members);
             } catch (error) {
                 console.log(error);
