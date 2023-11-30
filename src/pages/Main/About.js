@@ -63,7 +63,7 @@ export default function About() {
             </BackgroundImg>
             <MainDescription>
                 <MainDescriptionTitle>
-                    1. 텍스트 해석의 개척자. GLOT
+                    1. 텍스트(text) 해석의 완성자. GLOT
                 </MainDescriptionTitle>
                 <MainDescriptionContent>
                     General Logic Of Text

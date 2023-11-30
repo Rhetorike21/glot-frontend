@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 export default function WritingDeleteModal(props) {
     const onClickDelete = () => {
+        
     }
 
     return (

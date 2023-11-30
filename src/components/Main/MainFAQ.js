@@ -44,7 +44,19 @@ export default function FAQ() {
                             onClick={() => toggleItem(index)}
                         ></FAQButton>
                     </FAQTitle>
-                    {expandedItems[index] ? <FAQContent>{item.answer}</FAQContent> : null}
+                    {expandedItems[index] && (
+                        <FAQContent>
+                            <Bold>
+                                {item.answerATitle}
+                            </Bold>
+                            {item.answerA}
+                            <Bold>
+                            {item.answerBTitle}
+                            </Bold>
+                            {item.answerB}
+                            {item.answer}
+                        </FAQContent>
+                    )}
                 </FAQComponent>
                 ))}
             </MainDescriptionContent>
@@ -55,7 +67,10 @@ export default function FAQ() {
 const faqData = [
     {
         question: 'GLOT과 GLOT AI는 어떻게 다른가요? 그리고 GLOT과 GLOT AI는 어떤 역할을 하나요?',
-        answer: 'GLOT\n 첫째, GLOT(General Logic Of Text)은 문장과 문장, 문단과 문단 간의 논리적인 관계를 정리한 로직(logic)을 의미합니다. [GLOT은 ※텍스트(Text, 글)의 논리적인 원리를 정리한 로직(logic)]\n 둘째, GLOT(General Logic Of Text)은 문장과 문장, 문단과 문단 간의 논리적인 관계를 발전형 · 반대형 · 결론형 등의 몇 가지 유형들로 정확하게 분류합니다. [문장과 문장, 문단과 문단과의 관계 파악]\n\n GLOT AI\n GLOT(General Logic Of Text) 인공 지능(AI)은 GLOT(General Logic Of Text)이 텍스트(Text, 글)에서 할 수 있는 역할을 모두 해낼 수 있습니다. 현재 출시된 GLOT(General Logic Of Text) 인공 지능(AI)은 사용자가 ‘한국어로 구성된 작문의 기본 단계’를 수행할 수 있게 도와줍니다.\n 그러나 이후에 출시되는 GLOT(General Logic Of Text) 인공 지능(AI) 시리즈(series)는 전 세계 모든 사람들이 ‘전 세계 모든 언어들로 구성된 텍스트(Text, 글)의 독해 · 주제 도출 · 요약 · 작문 · 작문 평가’를 수행할 수 있게 도와줍니다.'
+        answerATitle: 'GLOT\n',
+        answerA: '첫째, GLOT(General Logic Of Text)은 문장과 문장, 문단과 문단 간의 논리적인 관계를 정리한 로직(logic)을 의미합니다. [GLOT은 ※텍스트(Text, 글)의 논리적인 원리를 정리한 로직(logic)]\n 둘째, GLOT(General Logic Of Text)은 문장과 문장, 문단과 문단 간의 논리적인 관계를 발전형 · 반대형 · 결론형 등의 몇 가지 유형들로 정확하게 분류합니다. [문장과 문장, 문단과 문단과의 관계 파악]\n\n',
+        answerBTitle: 'GLOT AI\n',
+        answerB: 'GLOT(General Logic Of Text) 인공 지능(AI)은 GLOT(General Logic Of Text)이 텍스트(Text, 글)에서 할 수 있는 역할을 모두 해낼 수 있습니다. 현재 출시된 GLOT(General Logic Of Text) 인공 지능(AI)은 사용자가 ‘한국어로 구성된 작문의 기본 단계’를 수행할 수 있게 도와줍니다.\n 그러나 이후에 출시되는 GLOT(General Logic Of Text) 인공 지능(AI) 시리즈(series)는 전 세계 모든 사람들이 ‘전 세계 모든 언어들로 구성된 텍스트(Text, 글)의 독해 · 주제 도출 · 요약 · 작문 · 작문 평가’를 수행할 수 있게 도와줍니다.'
     },
     {
         question: '발전형 · 반대형 · 결론형은 어떻게 다른가요?',

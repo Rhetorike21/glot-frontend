@@ -46,7 +46,9 @@ export default function Login() {
     }
 
     const onClickLogIn = async (event) => {
-        event.preventDefault();
+        if (event) {
+            event.preventDefault();
+        }
         try {
             const response = await LoginApi(userId, userPw);
             console.log(response);

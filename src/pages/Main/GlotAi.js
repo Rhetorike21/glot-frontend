@@ -71,7 +71,7 @@ export default function GlotAi() {
                             color: 'rgba(50, 144, 255, 1)'
                         }}
                     >
-                        셋, 작성해 놓은 문장의 논리적인 구조를 분석하여 다음에{'\n'}
+                        셋, 작성자가 주도적으로 글을 작성하는 동안 앞으로 전개될 글의 방향 {'\n'}
                         이어질 수 있는 문장들을 순차적으로 추천해 주는 GLOT Writing
                     </Text>
                     <Text
