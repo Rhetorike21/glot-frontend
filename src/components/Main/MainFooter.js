@@ -30,10 +30,17 @@ export default function MainFooter() {
                     </Script>
                     <Script
                         style={{
-                            marginBottom: '19px',
+                            marginBottom: '12px',
                         }}
                     >
                         사업자 등록번호 : 670-86-02140
+                    </Script>
+                    <Script
+                        style={{
+                            marginBottom: '19px',
+                        }}
+                    >
+                        연락처 : 010-2957-7501
                     </Script>
                     <Script>
                         Copyright(c) 2023 Rhetorike corp. All Rights reserved.
