@@ -2,7 +2,7 @@ import React,{ useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import { useRecoilState } from "recoil";
-import { UserType, LoginState } from "../../recoil/Atom";
+import { UserType, LoginState } from "../../data/Atom";
 import styled from "styled-components";
 
 import Header from "../../components/Header";

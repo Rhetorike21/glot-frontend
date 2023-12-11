@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import { useRecoilState } from "recoil";
-import { SentenceType } from "../../recoil/Atom";
+import { SentenceType } from "../../data/Atom";
 
 export default function WritingOptionModal({ coordinates, setIsSlashTyped, setIsOptionSelected }) {
     const [selectOption, setSelectOption] = useRecoilState(SentenceType); // 선택한 작문 옵션

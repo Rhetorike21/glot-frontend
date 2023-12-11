@@ -5,7 +5,7 @@ import { useRecoilState } from 'recoil';
 import { useCookies } from 'react-cookie';
 
 import LoginApi from '../../services/Login';
-import { LoginState, UserType } from '../../recoil/Atom';
+import { LoginState, UserType } from '../../data/Atom';
 
 import CheckBox from '../../components/CheckBox';
 import WarningModal from '../../components/Modal/WarningModal';

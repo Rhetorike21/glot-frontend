@@ -4,8 +4,8 @@ import 'slick-carousel/slick/slick-theme.css';
 import styled from "styled-components";
 import React from 'react';
 
-import slideImg2 from '../../asset/slide1.png';
-import slideImg1 from '../../asset/slide2.png';
+import slideImg1 from '../../asset/slide1.png';
+import slideImg2 from '../../asset/slide2.png';
 import slideImg3 from '../../asset/slide3.png';
 import slideImg4 from '../../asset/slide4.png';
 import slideImg5 from '../../asset/slide5.png';
@@ -39,12 +39,11 @@ export default function MainCarousal() {
         <MainSlideArea>
             <MainSlideText>
                 <MainSlideTitle>
-                    4. 똑똑한 글쓰기 파트너,{`\n`}
+                    <Blue>네 번째 이야기{'\n'}</Blue>
+                    작문과 언어에 관한 최상의 학습 효과를{'\n'}
+                    사용자에게 가져다주는 GLOT 인공 지능(AI),{'\n'}
                     GLOT Writing
                 </MainSlideTitle>
-                <MainSlideSubTitle>
-                    General Logic of Text Writing
-                </MainSlideSubTitle>
             </MainSlideText>
             <Slider {...settings}>
                 <CarousalContent>
@@ -93,7 +92,7 @@ const MainSlideArea = styled.div`
 `;
 
 const MainSlideText = styled.div`
-    width: 50%;
+    width: 800px;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -113,8 +112,8 @@ const MainSlideText = styled.div`
 `;
 
 const MainSlideTitle = styled.div`
-    font-size: 48px;
-    font-weight: 700;
+    font-size: 44px;
+    font-weight: 600;
     line-height: 67px;
     letter-spacing: -0.05em;
     text-align: left;
@@ -133,24 +132,8 @@ const MainSlideTitle = styled.div`
     }
 `;
 
-const MainSlideSubTitle = styled.div`
-    font-size: 20px;
-    font-weight: 700;
-    line-height: 28px;
-    letter-spacing: -0.05em;
-    text-align: left;
-    white-space: pre-line;
-    color: rgba(210, 220, 240, 1);
-    @media (max-width: 781px) {
-        font-size: 16px;
-        font-weight: 700;
-        line-height: 32px;
-    }
-    @media (max-width: 591px) {
-        font-size: 14px;
-        line-height: 32px;
-    }
-
+const Blue = styled.span`
+    color: #4c68fa;
 `;
 
 const CarousalContent = styled.div`
@@ -167,17 +150,21 @@ const Image = styled.img`
 `;
 
 const Next = styled.div`
+    width: 30px;
+    height: 30px;
     position: absolute;
-    top: -20%;
-    right: 25%;
+    top: 90%;
+    right: 47%;
     z-index: 999;
     content: url(${next});
 `;
 
 const Prev = styled.div`
+    width: 30px;
+    height: 30px;
     position: absolute;
-    top: -20%;
-    left: 72%;
+    top: 90%;
+    left: 47%;
     z-index: 999;
     content: url(${prev});
 `;

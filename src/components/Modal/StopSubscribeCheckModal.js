@@ -19,7 +19,7 @@ export default function StopSubscribeCheck(props) {
                 계속 구독을 이용하시려면 [구독 계속 이용하기]를 해주세요.
             </Description>
             <ContentArea>
-                결제 수단 : {props.cardNumber}
+                결제 수단 : {props.payMethod} {props.cardNumber}
             </ContentArea>
             <ButtonArea>
                 <Button

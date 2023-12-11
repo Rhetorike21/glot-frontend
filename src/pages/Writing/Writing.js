@@ -4,9 +4,10 @@ import domtoimage from 'dom-to-image';
 import { saveAs } from 'file-saver';
 import { useReactToPrint } from 'react-to-print';
 import getCaretCoordinates from 'textarea-caret';
+import dayjs from 'dayjs';
 
 import { useRecoilState } from 'recoil';
-import { LoginState, WritingTitle, WritingContent, WritingId, Sentence, SentenceList, SentenceType, UserType } from '../../recoil/Atom';
+import { LoginState, WritingTitle, WritingContent, WritingId, Sentence, SentenceList, SentenceType, UserType } from '../../data/Atom';
 
 import Header from '../../components/Header';
 import SideBar from '../../components/Writing/SideBar';
@@ -15,6 +16,7 @@ import OptionModal from '../../components/Modal/WritingOptionModal';
 import ExampleModal from '../../components/Modal/WritingExampleModal';
 import VersionNotice from '../../components/Modal/VersionNoticeModal';
 import WarningModal from '../../components/Modal/WritingSaveNoticeModal';
+import WritingDeleteModal from '../../components/Modal/WritingDeleteModal';
 
 import WritingSaveApi from '../../services/WritingSave';
 import WritingDetailApi from '../../services/WritingDetail';
@@ -26,13 +28,15 @@ export default function Writing() {
     const [isSideBarOpen, setIsSideBarOpen] = useState(true); // 사이드바 제어
     const [sidebarHeight, setSidebarHeight] = useState(0); // 사이드바 높이
     const [contentInputHeight, setContentInputHeight] = useState(0); // 작문 내용 높이
+    const [writingList, setWritingList] = useState([]) // 작문 리스트
+    const [writingListUpdate, setWritingListUpdate] = useState(false) // 사이드바 작문 리스트 업데이트
+    const [coordinates, setCoordinates] = useState({ x: 0, y: 0 }); // '/' 문자의 위치
+
     const [showSaveNoticeModal, setShowSaveNoticeModal] = useState(false); // 작문 저장 여부(모달창 제어)
     const [isSlashTyped, setIsSlashTyped] = useState(false); // '/' 문자 입력 여부(모달창 제어)
     const [isVersionNotified, setIsVersionNotified] = useState(false); // 버전 업데이트 알림 여부(모달창 제어)
     const [isOptionSelected, setIsOptionSelected] = useState(false); // 작문 옵션 선택 여부(모달창 제어)
-    const [writingList, setWritingList] = useState([]) // 작문 리스트
-    const [writingListUpdate, setWritingListUpdate] = useState(false) // 사이드바 작문 리스트 업데이트
-    const [coordinates, setCoordinates] = useState({ x: 0, y: 0 }); // '/' 문자의 위치
+    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false); // 작문 삭제 여부(모달창 제어)
 
     const [selectOption, setSelectOption] = useRecoilState(SentenceType); // 선택한 작문 옵션
     const [selectOptionExample, setSelectOptionExample] = useRecoilState(SentenceList); // 선택한 작문 옵션의 예시 문장 배열
@@ -191,6 +195,12 @@ export default function Writing() {
         });
     };
 
+    //txt로 저장
+    const onClickSaveAsTxt = () => {
+        const blob = new Blob([writingContent], { type: 'text/plain;charset=utf-8' });
+        saveAs(blob, `${writingTitle}.txt`);
+    }
+
     //인쇄
     const onClickPrint = useReactToPrint({
         content: () => writingAreaRef.current,
@@ -212,12 +222,10 @@ export default function Writing() {
     const onClickSave = () => {
         if(writingTitle || writingContent) {
             if (!writingId) {
-                // if(writingTitle === '') {
-                //     const temptTitle = dayjs().format('YYYYMMDDHHmmss');
-                //     setWritingTitle(temptTitle);
-                // }
-                // 작문을 처음 저장하는 경우 writingId가 없으므로 빈 문자열을 전달
-                WritingSaveApi(writingId, writingTitle, writingContent)
+                 //작문을 처음 저장하는 경우 writingId가 없으므로 빈 문자열을 전달
+                if(writingTitle === '') {
+                    const temptTitle = dayjs().format('YYYYMMDD HHmmss');
+                    WritingSaveApi(writingId, temptTitle, writingContent)
                     .then((response) => {
                         setWritingId(response.data);  // 저장하면 작문 고유 id를 받아옴
                         setWritingListUpdate(!writingListUpdate); // 사이드바 작문 리스트 업데이트
@@ -226,6 +234,18 @@ export default function Writing() {
                     .catch((error) => {
                         console.log(error);
                     });
+                }
+                else {
+                    WritingSaveApi(writingId, writingTitle, writingContent)
+                        .then((response) => {
+                            setWritingId(response.data);  // 저장하면 작문 고유 id를 받아옴
+                            setWritingListUpdate(!writingListUpdate); // 사이드바 작문 리스트 업데이트
+                            alert('작문이 저장되었습니다.');
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        });
+                }
             }
             else {
                 // 작문을 수정하는 경우
@@ -248,6 +268,7 @@ export default function Writing() {
                 <Content>
                     <SideBar
                         isSideBarOpen={isSideBarOpen}
+                        setIsDeleteModalOpen={setIsDeleteModalOpen}
                         setIsSideBarOpen={setIsSideBarOpen}
                         sidebarHeight={sidebarHeight}
                         writingList={writingList}
@@ -256,20 +277,28 @@ export default function Writing() {
                         setWritingListUpdate={setWritingListUpdate}
                         onClickPrint={onClickPrint}
                         onClickSaveAsJpg={onClickSaveAsJpg}
+                        onClickSaveAsTxt={onClickSaveAsTxt}
                     />
                     <InnerContainer isSideBarOpen={isSideBarOpen}>
                         <WritingArea isSideBarOpen={isSideBarOpen} ref={writingAreaRef} userType={userType} id='writing'>
                             <TitleArea>
                                 <TitleInput
                                     type="text"
-                                    placeholder="제목을 입력해주세요"
+                                    placeholder="제목을 입력하세요."
                                     value={writingTitle}
                                     onChange={(e) => setWritingTitle(e.target.value)}
                                 />
                             </TitleArea>
                             <ContentArea>
                                 <ContentInput
-                                    placeholder="문장을 입력하여 작문을 시작해보세요!"
+                                    placeholder="
+                                    🖍️&nbsp;여기에서부터 작문을 시작하세요.&#13;&#10;
+                                    1. 원하는 문장을 입력하세요.&#13;&#10;
+                                    2. 원하는 문장 뒤에 '/'[키보드에서 '/' key]를 누르세요.&#13;&#10;
+                                    3. GLOT Writing이 전개 유형들을 추천하면, 하나의 전개 유형을 선택해 주세요.&#13;&#10;
+                                    4. GLOT Writing이 사용자가 선택한 전개 유형에 해당하는 문장들을 추천하면, 하나의 문장을 &nbsp;&nbsp;&nbsp;선택해 주시거나 전개 유형에 해당하는 문장을 직접 입력해 주세요.&#13;&#10;
+                                    5. 2번부터 4번까지의 과정을 반복하면서, 문장을 선택하고 변형하여, 원하는 작문을 완성하세요.
+                                    "
                                     value={writingContent}
                                     onChange={handleContentChange}
                                     onInput={handleTextAreaResize}
@@ -326,6 +355,8 @@ export default function Writing() {
             )}
             {isSlashTyped && (<OptionModal setIsSlashTyped={setIsSlashTyped} setIsOptionSelected={setIsOptionSelected} coordinates={coordinates}/>)}
             {isOptionSelected && (<ExampleModal setIsSlashTyped={setIsSlashTyped} setIsOptionSelected={setIsOptionSelected} writingContent={writingContent} setWritingContent={setWritingContent} coordinates={coordinates}/>)}
+            {isDeleteModalOpen && (<WritingDeleteModal setIsDeleteModalOpen={setIsDeleteModalOpen} writingListUpdate={writingListUpdate} setWritingListUpdate={setWritingListUpdate}/>)}
+            {isDeleteModalOpen && (<Backdrop />)}
             {isVersionNotified && (<VersionNotice setIsVersionNotified={setIsVersionNotified}/>)}
             {isVersionNotified && (<Backdrop />)}
             {showSaveNoticeModal && (<WarningModal setShowSaveNoticeModal={setShowSaveNoticeModal}/>)}
@@ -431,6 +462,8 @@ const ContentInput = styled.textarea`
     resize: none;
     &::placeholder {
         color: rgba(218, 219, 221, 1);
+        line-spacing: -0.03em;
+        font-size: 14px;
     }
 `;
 

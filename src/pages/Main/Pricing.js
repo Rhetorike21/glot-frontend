@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { useRecoilValue } from 'recoil';
-import { LoginState } from '../../recoil/Atom';
+import { LoginState } from '../../data/Atom';
 
 import TopBar from '../../components/Main/TopBar';
 import MainFooter from '../../components/Main/MainFooter';
@@ -17,25 +17,27 @@ export default function Pricing() {
     const isLogin = useRecoilValue(LoginState);
 
     const onClickBasic = () => {
-        if(!isLogin){
-            alert('로그인 후 이용해주세요.');
-            navigate('/login');
-            return;
-        }
-        else{
-            navigate('/payment/basic');
-        }
+        // if(!isLogin){
+        //     alert('로그인 후 이용해주세요.');
+        //     navigate('/login');
+        //     return;
+        // }
+        // else{
+        //     navigate('/payment/basic');
+        // }
+        alert('준비 중입니다.')
     }
 
     const onClickEnterprise = () => {
-        if(!isLogin){
-            alert('로그인 후 이용해주세요.');
-            navigate('/login');
-            return;
-        }
-        else{
-            navigate('/payment/enterprise');
-        }
+        // if(!isLogin){
+        //     alert('로그인 후 이용해주세요.');
+        //     navigate('/login');
+        //     return;
+        // }
+        // else{
+        //     navigate('/payment/enterprise');
+        // }
+        alert('준비 중입니다.')
     }
 
     return(
@@ -45,7 +47,7 @@ export default function Pricing() {
                 <TitleArea>
                     <Title>
                         <TitleSentence>
-                            <div className='bold'>GLOT Writing.&nbsp;</div>선택하고 변형하여{'\n'}
+                            <div className='bold'>GLOT Writing.&nbsp;</div>선택하고 변형하면서{'\n'}
                         </TitleSentence>
                         <TitleSentence>
                             완성하는 텍스트(text)의 작문
@@ -53,7 +55,7 @@ export default function Pricing() {
                     </Title>
                     <Button
                         onClick={() => {
-                            window.open("http://3.39.72.57/writing", "_blank");
+                            window.open("https://heyglot.com/writing", "_blank");
                         }}
                     >
                         무료 체험하기
@@ -70,13 +72,13 @@ export default function Pricing() {
                 </TitleArea>
                 <ContentArea>
                     <Sentence>
-                        <div className="highlight">하나</div>, 원하는 문장을 입력하고 GLOT Writing과 함께 다음 문장을 이어 가요.{'\n'}
+                        <div className="highlight">하나, </div> 원하는 문장을 입력하면 GLOT Writing이 전개 유형들을 추천해 주어요.{'\n'}
                     </Sentence>
                     <Sentence>
-                        <div className='highlight'>둘</div>, GLOT Writing과 함께 작문하면서 GLOT Writing으로부터 글의 방향에 대한 코칭을 받아요.{'\n'}
+                        <div className='highlight'>둘, </div> 전개 유형들 중에서 하나를 선택하면, GLOT Writing이 사용자가 선택한 전개 유형에 해당하는 문장들을 추천해 주어요.{'\n'}
                     </Sentence>
                     <Sentence>
-                        <div className='highlight'>셋</div>, 완성된 작문을 PDF 형식으로 다운로드를 받아요.
+                        <div className='highlight'>셋, </div> 전개 유형에 해당하는 문장들 중에서 하나를 선택하거나 전개 유형에 해당하는 문장을 직접 입력하면서, 원하는 작문을 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;완성하세요.
                     </Sentence>
                 </ContentArea>
                 <ImageArea>
@@ -92,10 +94,8 @@ export default function Pricing() {
                     />
                 </ImageArea>
                 <TextArea>
-                    <Line>
-                        GLOT<div className='highlight'>(General Logic of Text)&nbsp;</div> 인공 지능<div className='highlight'>(AI)&nbsp;</div> 1.0{'\n'}
-                    </Line>
-                    <Bold>더 다양하게 사용하는 방법!</Bold>
+                    GLOT Writing 1.0의 고객에 대한 배려{'\n'}
+                    <Bold>사용자를 배려한 여러 가지 GLOT Writing</Bold>
                 </TextArea>
                 <BannerArea>
                     <Banner>
@@ -241,7 +241,7 @@ const Title = styled.div`
 const TitleSentence = styled.div`
     width: 100%;
     font-size: 48px;
-    font-weight: 500;
+    font-weight: 400;
     line-height: 67.2px;
     letter-spacing: -0.03em;
     text-align: left;
@@ -261,7 +261,7 @@ const Button = styled.div`
     cursor: pointer;
     color: rgba(17, 17, 17, 1);
     font-size: 22px;
-    font-weight: 700;
+    font-weight: 500;
     line-height: 22px;
     letter-spacing: -0.03em;
     display: flex;
@@ -287,7 +287,7 @@ const ContentArea = styled.div`
 
 const Sentence = styled.div`
     width: 100%;
-    font-size: 24px;
+    font-size: 23px;
     font-weight: 500;
     line-height: 52.8px;
     letter-spacing: -0.03em;
@@ -301,7 +301,7 @@ const ImageArea = styled.div`
     border-radius: 30px;
     background-color: rgba(255, 255, 255, 1);
     margin: 0 auto;
-    margin-top: 48px;
+    margin-top: 28px;
 `;
 
 const TextArea = styled.div`
@@ -312,7 +312,7 @@ const TextArea = styled.div`
     align-items: center;
     text-align: center;
     font-size: 40px;
-    font-weight: 500;
+    font-weight: 400;
     line-height: 1.5;
     letter-spacing: -0.03em;
     color: rgba(17, 17, 17, 1);

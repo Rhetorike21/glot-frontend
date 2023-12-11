@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { useRecoilValue } from 'recoil';
-import { UserType } from '../../recoil/Atom';
+import { UserType } from '../../data/Atom';
 
 import Header from '../../components/Header';
 

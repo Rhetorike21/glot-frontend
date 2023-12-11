@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import {useRecoilValue} from "recoil";
-import {LoginState} from "../recoil/Atom";
+import {LoginState} from "../data/Atom";
 
 import Dropdown from "../components/Writing/Dropdown";
 

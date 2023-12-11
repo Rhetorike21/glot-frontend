@@ -19,7 +19,7 @@ export default function GlotAi() {
     const navigate = useNavigate();
 
     const onClickStart = () => {
-        window.open("http://3.39.72.57/writing", "_blank");
+        window.open("https://heyglot.com/writing", "_blank");
     }
 
     return(
@@ -67,58 +67,57 @@ export default function GlotAi() {
                     <Text
                         style={{
                             fontSize: '32px',
-                            fontWeight: '600',
-                            color: 'rgba(50, 144, 255, 1)'
+                            fontWeight: '500',
                         }}
                     >
-                        셋, 작성자가 주도적으로 글을 작성하는 동안 앞으로 전개될 글의 방향, 문장과 문장{'\n'}
+                        <span style={{color: '#3290ff'}}>셋,</span> 작성자가 주도적으로 글을 작성하는 동안 앞으로 전개될 글의 방향, 문장과 문장{'\n'}
                         혹은 문단과 문단 간의 관계에 대한 가이드(guide)를 제공해 주는 GLOT Writing
                     </Text>
                     <Text
                         style={{
                             fontSize: '24px',
-                            fontWeight: '600',
+                            fontWeight: '500',
                             color: 'rgba(60, 61, 63, 1)'
                         }}
                     >
-                        다음 문장을 논리적으로 이어 가는 것이 어렵다면, 클릭(Click)하세요. 클릭(Click)하시면,{'\n'}
-                        GLOT Writing은 작성자가 주도적으로 글을 작성하는 동안 앞으로 전개될 글의 방향, 문장{'\n'}
-                        과 문장 혹은 문단과 문단 간의 관계에 대한 가이드(guide)를 제공해 줍니다.
+                        작문하기가 어렵다면, 클릭(click)하세요.{'\n'}
+                        클릭(click)하시면, GLOT Writing은 사용자가 주도적으로 글을 작성하는 동안 앞으로 전개될 글의 방향,{"\n"}
+                        문장과 문장 혹은 문단과 문단 간의 관계에 대한 가이드(guide)를 제공해 줍니다.
                     </Text>
                 </MainText>
                 <MainBox
                     style={{
-                        width: '1137.6px',
-                        height: '542.7px',
+                        width: '1264px',
+                        height: '603px',
                     }}
                 >
-                    <img src={img3} alt='img3' style={{width: '1137.6px', height: '542.7px'}}/>
+                    <img src={img3} alt='img3' style={{width: '1264px', height: '603px'}}/>
                 </MainBox>
                 <MainBox
                     style={{
-                        width: '1137px',
+                        width: '1300px',
                         height: '603px',
                         marginTop: '24px',
-                        marginBottom: '56px',
+                        marginBottom: '56px'
                     }}
                 >
                     <BoxContent
                         style={{
-                            width: '556.5px',
+                            width: '620px',
                             height: '603px',
                             marginRight: '24px',
                         }}
                     >
-                        <img src={img2} alt='img2' style={{width: '556.5px', height: '603px'}}/>
+                        <img src={img2} alt='img2' style={{width: '620px', height: '603px'}}/>
                     </BoxContent>
                     <BoxContent
                         style={{
-                            width: '556.5px',
+                            width: '620px',
                             height: '603px',
                             borderRadius: '24px',
                         }}
                     >
-                        <img src={img1} alt='img1' style={{width: '556.5px', height: '603px'}}/>
+                        <img src={img1} alt='img1' style={{width: '620px', height: '603px'}}/>
                     </BoxContent>
                 </MainBox>
             </MainContent>
@@ -184,7 +183,8 @@ const TitleSentence = styled.div`
     justify-content: flex-start;
     align-items: center;
     div.bold {
-        font-weight: 700;
+        font-weight: 600;
+        color: #8a9cfd;
     }
 `;
 
@@ -192,7 +192,7 @@ const Button = styled.div`
     width: 113px;
     height: 24px;
     font-size: 22px;
-    font-weight: 700;
+    font-weight: 500;
     color: rgba(255, 255, 255, 1);
     text-align: center;
     cursor: pointer;

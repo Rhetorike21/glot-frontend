@@ -8,15 +8,15 @@ import notice from '../../asset/notice.png';
 export default function StopSubscribe(props) {
 
     const onClickStop = async() => {
+        try {
+            const response = await StopApi();
+            alert('구독이 정상적으로 중지되었습니다.');
+        }
+        catch (error) {
+            console.log(error);
+        }
         props.setIsStopModalOpen(false);
         props.setIsCheckModalOpen(true);
-        // try {
-        //     const response = await StopApi();
-        //     console.log(response);
-        // }
-        // catch (error) {
-        //     console.log(error);
-        // }
     }
 
     return(

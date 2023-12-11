@@ -8,7 +8,9 @@ const StopApi = async () => {
         const response = await axios.delete(
             `${BASE_URL}/subscription/stop`,
             {
-                auth: localStorage.getItem('token'),
+                headers: {
+                    auth: localStorage.getItem('token'),
+                },
             },
         );
 

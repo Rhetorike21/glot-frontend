@@ -4,31 +4,47 @@ import styled from 'styled-components';
 import CheckBox from '../CheckBox';
 
 import RefundInfoApi from '../../services/RefundInfo';
+import RefundApi from '../../services/Refund';
 
 import notice from '../../asset/notice.png';
 import close from '../../asset/closeModal.png';
 
 export default function Refund(props) {
     const [isCheck, setIsCheck] = useState(false); //환불규정 체크
-    const [refundInfo, setRefundInfo] = useState({
-        accountId: 'test',
-        numOfMembers: 1,
-        remainDays: 30,
-        refundAmount: 10000,
-    });
+    const [refundInfo, setRefundInfo] = useState({});
 
-    // useEffect(() => {
-    //     const getRefundInfo = async() => {
-    //         try {
-    //             const response = await RefundInfoApi();
-    //             setRefundInfo(response.data);
-    //         }
-    //         catch (error) {
-    //             console.log(error);
-    //         }
-    //     }
-    //     getRefundInfo();
-    // }, []);
+    useEffect(() => {
+        const getRefundInfo = async() => {
+            try {
+                const response = await RefundInfoApi();
+                setRefundInfo(response);
+            }
+            catch (error) {
+                console.log(error);
+            }
+        }
+        getRefundInfo();
+    }, []);
+
+    const onClickRefund = () => {
+        if (isCheck) {
+            RefundApi()
+                .then((response) => {
+                    alert('환불이 완료되었습니다.');
+                    props.setIsRefundModalOpen(false);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        }
+        else {
+            alert('환불규정에 동의해주세요.');
+        }
+    }
+
+    const onClickCancel = () => {
+        props.setIsRefundModalOpen(false);
+    }
 
     return(
         <Container>
@@ -104,7 +120,7 @@ export default function Refund(props) {
                 </CheckArea>
             </Notice>
             <ButtonArea>
-                <Button>
+                <Button onClick={onClickCancel}>
                     취소
                 </Button>
                 <Button
@@ -112,6 +128,7 @@ export default function Refund(props) {
                         color: 'rgba(255, 255, 255, 1)',
                         backgroundColor: 'rgba(17, 17, 17, 1)',
                     }}
+                    onClick={onClickRefund}
                 >
                     환불
                 </Button>

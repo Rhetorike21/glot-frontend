@@ -29,7 +29,6 @@ export default function TopBar() {
     }
 
     const onClickStart = () => {
-       //window.open("http://localhost:3000/writing", "_blank");
        navigate('/writing');
     }
 

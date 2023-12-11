@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import styled from "styled-components";
 
 import { useRecoilState } from "recoil";
-import { SentenceList, Sentence, SentenceType } from "../../recoil/Atom";
+import { SentenceList, Sentence, SentenceType } from "../../data/Atom";
 
 import SentenceRecomendApi from "../../services/Sentence";
 import SearchApi from "../../services/SearchSchool";
@@ -24,11 +24,9 @@ export default function WritingExampleModal( {coordinates, setIsOptionSelected ,
             .then((response) => {
                 setSentenceList(response.result);
                 setIsLoading(false); // API 응답 후 로딩 상태 해제
-                console.log(response);
             })
             .catch((error) => {
                 setIsLoading(false); // 에러 발생 시도 로딩 상태 해제
-                console.log(error);
             });
     }, []);
 
@@ -59,11 +57,9 @@ export default function WritingExampleModal( {coordinates, setIsOptionSelected ,
             .then((response) => {
                 setSentenceList(response.result);
                 setIsLoading(false); // API 응답 후 로딩 상태 해제
-                console.log(response);
             })
             .catch((error) => {
                 setIsLoading(false); // 에러 발생 시도 로딩 상태 해제
-                console.log(error);
             });
     }
 

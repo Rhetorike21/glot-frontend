@@ -2,13 +2,14 @@ import React, {useState, useEffect} from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { useRecoilValue } from 'recoil';
-import { UserType } from '../../recoil/Atom';
+import { UserType } from '../../data/Atom';
 
 import Header from '../../components/Header';
 import StopModal from '../../components/Modal/StopSubscribeModal';
 import StopCheckModal from '../../components/Modal/StopSubscribeCheckModal';
 import RefundModal from '../../components/Modal/RefundModal';
 import Backdrop from '../../components/Modal/Backdrop';
+import Loading from '../../components/Loading';
 
 import PaidInfoApi from '../../services/PaidInfo';
 
@@ -101,6 +102,11 @@ export default function PaidInformation() {
                     </Menu>
                 </SideContent>
                 <InnerContent>
+                    {isLoading ? (
+                        <ContentOuter>
+                            <Loading/>
+                        </ContentOuter>
+                    ) : (
                     <ContentOuter>
                         <TitleArea>
                             <Title>
@@ -221,6 +227,7 @@ export default function PaidInformation() {
                             </Notice>
                         </ContentArea>
                     </ContentOuter>
+                    )}
                 </InnerContent> 
             </Content>
             {isStopModalOpen ? (
@@ -250,7 +257,8 @@ export default function PaidInformation() {
             {isCheckModalOpen ? (
                 <StopCheckModal
                     setIsCheckModalOpen={setIsCheckModalOpen}
-                    cardNumber={paidInfo.history.cardNumber}
+                    cardNumber={paidInfo.history[0].cardNumber}
+                    payMethod={paidInfo.payMethod}
                     lastDate={lastDate}
                 />
             ) : null}

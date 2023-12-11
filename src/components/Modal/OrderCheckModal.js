@@ -2,7 +2,7 @@ import React,{useState} from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
-import { UserType } from "../../recoil/Atom";
+import { UserType } from "../../data/Atom";
 
 import OrderApi from "../../services/Order";
 

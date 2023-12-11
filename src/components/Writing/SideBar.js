@@ -3,7 +3,7 @@ import styled, {keyframes} from 'styled-components';
 import dayjs from 'dayjs';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
-import { WritingId, WritingContent, WritingTitle } from '../../recoil/Atom';
+import { WritingId, WritingContent, WritingTitle } from '../../data/Atom';
 
 import { useRecoilState } from 'recoil';
 
@@ -246,12 +246,14 @@ export default function SideBar(props) {
             {isOpenDownload && 
                 <WritingDownload 
                     setIsOpenDownload={setIsOpenDownload} 
+                    setIsDeleteModalOpen={props.setIsDeleteModalOpen}
                     clickCoordinates={clickCoordinates} 
                     writingListUpdate={props.writingListUpdate} 
                     setWritingListUpdate={props.setWritingListUpdate} 
                     modalRef={modalRef}
                     onClickPrint={props.onClickPrint}
                     onClickSaveAsJpg={props.onClickSaveAsJpg}
+                    onClickSaveAsTxt={props.onClickSaveAsTxt}
                 />}
         </Container>
     )

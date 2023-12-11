@@ -29,7 +29,6 @@ export default function TopBar() {
     }
 
     const onClickStart = () => {
-       //window.open("http://localhost:3000/writing", "_blank");
        navigate('/writing');
     }
 
@@ -78,6 +77,7 @@ const MainTopBarOuter = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    border-bottom: 1px solid #F2F3F5;
 `;
 
 const MainTopBarContainer = styled.div`

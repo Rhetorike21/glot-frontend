@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 
-import { WritingTitle, WritingContent, WritingId } from "../../recoil/Atom";
+import { WritingTitle, WritingContent, WritingId } from "../../data/Atom";
 import { useRecoilState } from "recoil";
 
-import word from '../../asset/word.png';
+import txt from '../../asset/txt.png';
 import pdf from '../../asset/pdf.png';
 import jpg from '../../asset/jpg.png';
 import print from '../../asset/print.png';
@@ -32,23 +32,13 @@ export default function WritingDownload(props) {
         props.setIsOpenDownload(false);
     }
 
+    const onClickTXT = () => {
+        props.onClickSaveAsTxt();
+        props.setIsOpenDownload(false);
+    }
+
     const onClickDelete = () => {
-        if (window.confirm('정말 삭제하시겠습니까?')) {
-            WritingDeleteApi(writingId)
-                .then((response) => {
-                    props.setIsOpenDownload(false);
-                    props.setWritingListUpdate(!props.writingListUpdate);
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
-        }
-        else {
-            props.setIsOpenDownload(false);
-        }
-        setWritingTitle('');
-        setWritingContent('');
-        setWritingId('');
+        props.setIsDeleteModalOpen(true);
     }
 
     return (
@@ -63,17 +53,32 @@ export default function WritingDownload(props) {
             <ModalContent
                 onClick={modalIndsideClick}
             >
-                <SelectContent>
+                <SelectContent
+                    onClick={onClickTXT}
+                >
                     <SelectIcon>
-                        <img src={word} alt="word"/>
+                        <img 
+                            style={{
+                                width: '100%',
+                                height: '100%',
+                            }}
+                            src={txt} 
+                            alt="txt"/>
                     </SelectIcon>
-                    <SelectTitle>Word 다운로드</SelectTitle>
+                    <SelectTitle>TXT 다운로드</SelectTitle>
                 </SelectContent>
                 <SelectContent
                     onClick={onClickPrint}
                 >
                     <SelectIcon>
-                        <img src={pdf} alt="pdf"/>
+                        <img 
+                             style={{
+                                width: '100%',
+                                height: '100%',
+                            }}
+                            src={pdf} 
+                            alt="pdf"
+                        />
                     </SelectIcon>
                     <SelectTitle>PDF 다운로드</SelectTitle>
                 </SelectContent>
@@ -81,7 +86,14 @@ export default function WritingDownload(props) {
                     onClick={onClickJPG}
                 >
                     <SelectIcon>
-                        <img src={jpg} alt="jpg"/>
+                        <img 
+                            style={{
+                                width: '100%',
+                                height: '100%',
+                            }}
+                            src={jpg} 
+                            alt="jpg"
+                        />
                     </SelectIcon>
                     <SelectTitle>JPG 다운로드</SelectTitle>
                 </SelectContent>
@@ -89,7 +101,14 @@ export default function WritingDownload(props) {
                     onClick={onClickPrint}
                 >
                     <SelectIcon>
-                        <img src={print} alt="print"/>
+                        <img 
+                            style={{
+                                width: '100%',
+                                height: '100%',
+                            }}
+                            src={print} 
+                            alt="print"
+                        />
                     </SelectIcon>
                     <SelectTitle>인쇄하기</SelectTitle>
                 </SelectContent>
@@ -97,7 +116,14 @@ export default function WritingDownload(props) {
                     onClick={onClickDelete}
                 >
                     <SelectIcon>
-                        <img src={trash} alt="trash"/>
+                        <img 
+                            style={{
+                                width: '100%',
+                                height: '100%',
+                            }}
+                            src={trash} 
+                            alt="trash"
+                        />
                     </SelectIcon>
                     <SelectTitle>삭제</SelectTitle>
                 </SelectContent>
@@ -140,9 +166,12 @@ const SelectContent = styled.div`
 `;
 
 const SelectIcon = styled.div`
-    width: 24px;
-    height: 24px;
-    margin-top: 8px;
+    width: 14px;
+    height: 14px;
+    margin-right: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `;
 
 const SelectTitle = styled.div`

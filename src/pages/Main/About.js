@@ -21,7 +21,6 @@ import card3 from '../../asset/card3.png';
 import banner from '../../asset/banner.png';
 import banner1 from '../../asset/banner1.png';
 import vector from '../../asset/Vector.png';
-import blueVector from '../../asset/blueVector.png';
 import whiteVector from '../../asset/whiteVector.png';
 
 
@@ -29,7 +28,7 @@ export default function About() {
     const navigate = useNavigate();
 
     const onClickStart = () => {
-        window.open("http://3.39.72.57/writing", "_blank");
+        window.open("https://heyglot.com/writing", "_blank");
     }
 
     return (
@@ -44,7 +43,7 @@ export default function About() {
                             in realizing ideal.
                         </Title>
                         <Description>
-                            작문에 투자하는 시간을 절약해보세요.{'\n'}
+                            작문에 투자하는 시간을 절약하세요.{'\n'}
                             그리고 이상 실현에 여러분의 시간을 투자하세요!
                         </Description>
                         <ButtonArea>
@@ -63,10 +62,10 @@ export default function About() {
             </BackgroundImg>
             <MainDescription>
                 <MainDescriptionTitle>
-                    1. 텍스트(text) 해석의 완성자. GLOT
+                    <Blue>첫 번째 이야기</Blue>&nbsp;GLOT 로직(logic)을 학습시켜 개발된 GLOT 인공 지능(AI)
                 </MainDescriptionTitle>
                 <MainDescriptionContent>
-                    General Logic Of Text
+                    GLOT 로직(logic)과 GLOT 인공 지능(AI)
                 </MainDescriptionContent>
                 <MainDescriptionContainer
                     src={slide1}
@@ -83,8 +82,8 @@ export default function About() {
             </MainDescription>
             <MainImgArea>
                 <MainImgTitle>
-                    3. GLOT<Small>(General Logic Of Text)</Small>에{'\n'}
-                    인공 지능<Small>(AI)</Small>을 입히다.
+                    <span style={{color: '#8a9cfd'}}>세 번째 이야기{'\n'}</span>
+                    작문에 최적화된 GLOT 인공 지능(AI), GLOT Writing
                 </MainImgTitle>
                 <MainImgContent>
                     <MainImgContentOuter>
@@ -111,14 +110,14 @@ export default function About() {
                             }                        
                         }
                     >
-                        GLOT AI 더 알아보기
+                        GLOT Writing 더 알아보기
                         <img 
                             src={whiteVector}
                             alt='vector'
                             style={{
                                 width: '18px',
                                 height: '15px',
-                                marginLeft: '20px',
+                                marginLeft: '10px',
                             }}
                         />
                     </MainImgButton>
@@ -131,18 +130,18 @@ export default function About() {
                 }}
             >
                 <BannerText>
-                    텍스트 작문,GLOT AI와 함께 최고가 되어 보세요.
+                    이제 GLOT Writing과 함께 '작문의 신'이 되세요.
                 </BannerText>
                 <BannerButtonArea>
                     <BannerButton onClick={onClickStart}>
-                       GLOT 무료체험
+                       GLOT Writing 무료 체험
                         <img 
                             src={vector}
                             alt='vector'
                             style={{
                                 width: '18px',
                                 height: '15px',
-                                marginLeft: '20px',
+                                marginLeft: '10px',
                             }}
                         />
                     </BannerButton>
@@ -157,7 +156,7 @@ export default function About() {
                 }}
             >
                 <BottomBannerText>
-                    레토리케는 GLOT을 인공 지능(AI)로 만들어 전 세계 모든 사람들에게 보급하려고 합니다.
+                    레토리케는 'GLOT'을 '인공 지능(AI)'로 만들어 전 세계 모든 사람들에게 보급하려고 합니다.
                 </BottomBannerText>
             </MainBannerArea>
             <MainFooter/>
@@ -222,7 +221,7 @@ const Title = styled.div`
     width: 591px;
     color: rgba(255, 255, 255, 1);
     font-size: 46px;
-    font-weight: 900;
+    font-weight: 700;
     line-height: 70px;
     letter-spacing: -0.03em;
     text-align: left;
@@ -394,37 +393,6 @@ const MainDescriptionContainer = styled.img`
     }
 `;
 
-const Button = styled.div`
-    width: 178px;
-    height: 57px;
-    border-radius: 10px;
-    background-color: transparent;
-    border: 1.3px solid rgba(50,144,255,1);
-    color: rgba(50,144,255,1);
-    font-size: 17px;
-    font-weight: 700;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto; /* 좌우 중앙 정렬을 위해 추가 */
-    position: relative;
-    bottom: 130px;
-    cursor: pointer;
-    @media (max-width: 591px) {
-        width: 96px;
-        height: 32px;
-        font-size: 12px;
-        font-weight: 700;
-        line-height: 32px;
-        letter-spacing: -0.03em;
-        text-align: center;
-        position: relative;
-        bottom: 80px;
-        cursor: pointer;
-    }
-`;
-
 const MainImgArea = styled.div`
     width: 100%;
     background-image: url(${mainImg2});
@@ -438,7 +406,7 @@ const MainImgArea = styled.div`
 const MainImgTitle = styled.div`
     width: 100%;
     font-size: 48px;
-    font-weight: 600;
+    font-weight: 500;
     line-height: 62px;
     letter-spacing: -0.03em;
     text-align: center;
@@ -453,21 +421,6 @@ const MainImgTitle = styled.div`
         letter-spacing: -0.03em;
         text-align: center;
         margin-top: 104px;
-    }
-`;
-
-const Small = styled.span`
-    font-size: 40px;
-    font-weight: 700;
-    line-height: 52px;
-    letter-spacing: -0.03em;
-    text-align: center;
-    @media (max-width: 591px) {
-        font-size: 24px;
-        font-weight: 700;
-        line-height: 32px;
-        letter-spacing: -0.03em;
-        text-align: center;
     }
 `;
 
@@ -487,10 +440,9 @@ const MainImgContent = styled.div`
 `;
 
 const MainImgContentOuter = styled.div`
-    width: 352px;
-    height: 428px;
+    width: 414px;
+    height: 451px;
     border-radius: 20px;
-    margin-right: 39px;
     @media (max-width: 1150px) {
         margin-top: 16px;
     }
@@ -511,7 +463,7 @@ const MainImgButtonArea = styled.div`
 `;
 
 const MainImgButton = styled.div`
-    width: 212px;
+    padding: 0 10px;
     height: 61px;
     color: rgba(255, 255, 255, 1);
     font-size: 17px;
@@ -555,7 +507,7 @@ const BannerButtonArea = styled.div`
 `;
 
 const BannerButton = styled.div`
-    width: 178px;
+    padding: 0 10px;
     height: 57px;
     border-radius: 10px;
     background-color: rgba(255, 255, 255, 1);
@@ -636,3 +588,6 @@ const BottomBannerText = styled.div`
     }
 `;
 
+const Blue = styled.span`
+    color: #4C68FA;
+`;
