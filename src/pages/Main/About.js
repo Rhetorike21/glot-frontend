@@ -28,7 +28,7 @@ export default function About() {
     const navigate = useNavigate();
 
     const onClickStart = () => {
-        window.open("https://heyglot.com/writing", "_blank");
+        window.open("http://www.heyglot.com/writing", "_blank");
     }
 
     return (
@@ -111,14 +111,9 @@ export default function About() {
                         }
                     >
                         GLOT Writing 더 알아보기
-                        <img 
+                        <Arrow
                             src={whiteVector}
                             alt='vector'
-                            style={{
-                                width: '18px',
-                                height: '15px',
-                                marginLeft: '10px',
-                            }}
                         />
                     </MainImgButton>
                 </MainImgButtonArea>
@@ -135,14 +130,9 @@ export default function About() {
                 <BannerButtonArea>
                     <BannerButton onClick={onClickStart}>
                        GLOT Writing 무료 체험
-                        <img 
+                        <Arrow
                             src={vector}
                             alt='vector'
-                            style={{
-                                width: '18px',
-                                height: '15px',
-                                marginLeft: '10px',
-                            }}
                         />
                     </BannerButton>
                 </BannerButtonArea>    
@@ -479,6 +469,38 @@ const MainImgButton = styled.div`
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
+    @media (max-width: 781px) {
+        width: 128px;
+        height: 42px;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: -0.03em;
+        text-align: center;
+    }
+    @media (max-width: 591px) {
+        width: 108px;
+        height: 32px;
+        font-size: 8px;
+        font-weight: 700;
+        letter-spacing: -0.03em;
+        text-align: center;
+    }
+`;
+
+const Arrow = styled.img`
+    width: 18px;
+    height: 15px;
+    margin-left: 10px;
+    @media (max-width: 781px) {
+        width: 15px;
+        height: 12px;
+        margin-left: 5px;
+    }
+    @media (max-width: 591px) {
+        width: 10px;
+        height: 10px;
+        margin-left: 3px;
+    }
 `;
 
 const MainBannerArea = styled.div`
@@ -521,18 +543,16 @@ const BannerButton = styled.div`
     @media (max-width: 781px) {
         width: 128px;
         height: 42px;
-        font-size: 14px;
+        font-size: 12px;
         font-weight: 700;
-        line-height: 32px;
         letter-spacing: -0.03em;
         text-align: center;
     }
     @media (max-width: 591px) {
         width: 108px;
         height: 32px;
-        font-size: 12px;
+        font-size: 8px;
         font-weight: 700;
-        line-height: 32px;
         letter-spacing: -0.03em;
         text-align: center;
     }

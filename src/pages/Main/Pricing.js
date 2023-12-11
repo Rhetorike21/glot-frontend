@@ -55,7 +55,7 @@ export default function Pricing() {
                     </Title>
                     <Button
                         onClick={() => {
-                            window.open("https://heyglot.com/writing", "_blank");
+                            window.open("http://heyglot.com/writing", "_blank");
                         }}
                     >
                         무료 체험하기
@@ -117,7 +117,7 @@ export default function Pricing() {
                             ✔️ 트래픽에 따른 서비스 이용 속도 제한{'\n'}
                             {'\n'}
                             {'\n'}
-                            ✔️ 작문 AI 초급 레벨 제공{'\n'}
+                            ✔️ GLOT Writing 초급 레벨 제공{'\n'}
                             {'\n'}
                             {'\n'}
                             ✔️ PDF 다운로드 제공

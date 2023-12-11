@@ -19,7 +19,7 @@ export default function GlotAi() {
     const navigate = useNavigate();
 
     const onClickStart = () => {
-        window.open("https://heyglot.com/writing", "_blank");
+        window.open("http://www.heyglot.com/writing", "_blank");
     }
 
     return(
@@ -62,7 +62,7 @@ export default function GlotAi() {
                         }}
                     >
                         내가 쓴 문장과 다음 문장의 관계는 어떻게 이루어질까?{'\n'}
-                        다음 문장을 어떻게 이어나가면 좋을까?{'\n'}
+                        다음 문장을 어떻게 이어 나가면 좋을까?{'\n'}
                     </Text>
                     <Text
                         style={{
