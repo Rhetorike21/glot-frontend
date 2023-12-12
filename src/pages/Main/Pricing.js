@@ -142,7 +142,7 @@ export default function Pricing() {
                             ✔️ 작문 내역 메모리 제공 (최근 100건 보관){'\n'}
                             {'\n'}
                             {'\n'}
-                            ✔️ 작문 내역 문서 다운로드 <Small>(DOC, PDF, JPG, TXT)</Small>{'\n'}
+                            ✔️ 작문 내역 문서 다운로드 <Small>(PDF, JPG, TXT)</Small>{'\n'}
                             {'\n'}
                             {'\n'}
                             ✔️ 작문 내역 인쇄 기능 제공{'\n'}
