@@ -104,10 +104,12 @@ const MainSlideText = styled.div`
     @media (max-width: 781px) {
         margin-top: 64px;
         margin-bottom: 64px;
+        margin-left: auto;
     }
     @media (max-width: 591px) {
         margin-top: 32px;
         margin-bottom: 32px;
+        margin-left: auto;
     }
 `;
 
@@ -121,14 +123,12 @@ const MainSlideTitle = styled.div`
     white-space: pre-line;
     color: rgba(17, 17, 17, 1);
     @media (max-width: 781px) {
-        font-size: 32px;
-        font-weight: 700;
+        font-size: 28px;
         line-height: 32px;
     }
     @media (max-width: 591px) {
-        font-size: 28px;ß
+        font-size: 22px;
         line-height: 32px;
-
     }
 `;
 
@@ -157,6 +157,16 @@ const Next = styled.div`
     right: 47%;
     z-index: 999;
     content: url(${next});
+    @media (max-width: 781px) {
+        right: 45%;
+        width: 25px;
+        height: 25px;
+    }
+    @media (max-width: 591px) {
+        right: 43%;
+        width: 20px;
+        height: 20px;
+    }
 `;
 
 const Prev = styled.div`
@@ -167,4 +177,15 @@ const Prev = styled.div`
     left: 47%;
     z-index: 999;
     content: url(${prev});
+    @media (max-width: 781px) {
+        left: 45%;
+        height: 25px;
+        width: 25px;
+    }
+    @media (max-width: 591px) {
+        left: 43%;
+        height: 20px;
+        width: 20px;
+    }
 `;
+

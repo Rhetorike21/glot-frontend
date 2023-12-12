@@ -62,7 +62,7 @@ export default function About() {
             </BackgroundImg>
             <MainDescription>
                 <MainDescriptionTitle>
-                    <Blue>첫 번째 이야기</Blue>&nbsp;GLOT 로직(logic)을 학습시켜 개발된 GLOT 인공 지능(AI)
+                    <div className='line'><Blue>첫 번째 이야기</Blue>&nbsp;GLOT 로직(logic)을 학습시켜 개발된 GLOT 인공 지능(AI)</div>
                 </MainDescriptionTitle>
                 <MainDescriptionContent>
                     GLOT 로직(logic)과 GLOT 인공 지능(AI)
@@ -330,7 +330,7 @@ const MainDescriptionTitle = styled.div`
     margin-top: 112px;
     letter-spacing: -0.05em;
     @media (max-width: 781px) {
-        font-size: 38px;
+        font-size: 28px;
         font-weight: 700;
         line-height: 32px;
         letter-spacing: -0.03em;
@@ -338,8 +338,8 @@ const MainDescriptionTitle = styled.div`
         margin-top: 64px;
     }
     @media (max-width: 591px) {
-        font-size: 32px;
-        font-weight: 700;
+        font-size: 23px;
+        font-weight: 600;
         line-height: 32px;
         letter-spacing: -0.03em;
         text-align: center;
@@ -359,8 +359,8 @@ const MainDescriptionContent = styled.div`
     color: rgba(210, 220, 240, 1);
     letter-spacing: -0.05em;
     @media (max-width: 591px) {
-        font-size: 26px;
-        font-weight: 700;
+        font-size: 20px;
+        font-weight: 400;
         line-height: 36px;
         letter-spacing: -0.03em;
         text-align: center;
@@ -404,13 +404,21 @@ const MainImgTitle = styled.div`
     color: rgba(255, 255, 255, 1);
     margin: 0 auto; /* 좌우 중앙 정렬을 위해 추가 */
     margin-top: 104px;
-    @media (max-width: 591px) {
+    @media (max-width: 781px) {
         font-size: 28px;
         font-weight: 700;
         line-height: 32px;
         letter-spacing: -0.03em;
         text-align: center;
-        margin-top: 104px;
+        margin-top: 84px;
+    }
+    @media (max-width: 591px) {
+        font-size: 23px;
+        font-weight: 500;
+        line-height: 32px;
+        letter-spacing: -0.03em;
+        text-align: center;
+        margin-top: 52px;
     }
 `;
 
