@@ -9,11 +9,13 @@ export default function PricingInfo() {
     const price = 18000;
 
     const onClickBasic = () => {
-        navigate('/payment/basic');
+        //navigate('/payment/basic');
+        alert('준비 중입니다.');
     }
 
     const onClickEnterprise = () => {
-        navigate('/payment/enterprise');
+        //navigate('/payment/enterprise');
+        alert('준비 중입니다.');
     }
 
     return(
@@ -43,16 +45,16 @@ export default function PricingInfo() {
                             ✔️ 작문 입력 <Small>(글자 수 무제한)</Small>{'\n'}
                             {'\n'}
                             {'\n'}
-                            ✔️ GLOT AI 작문 코칭 제공{'\n'}
+                            ✔️ 작문 내역 메모리 제공 (최근 100건 보관){'\n'}
                             {'\n'}
                             {'\n'}
-                            ✔️ 작문 내역 메모리 제공 <Small>(최근 100건 보관)</Small>{'\n'}
+                            ✔️ 작문 내역 문서 다운로드 <Small>(PDF, JPG, TXT)</Small>{'\n'}
                             {'\n'}
                             {'\n'}
-                            ✔️ 작문 내역 문서 다운로드 <Small>(DOC, PDF, JPG, TXT)</Small>{'\n'}
+                            ✔️ 작문 내역 인쇄 기능 제공{'\n'}
                             {'\n'}
                             {'\n'}
-                            ✔️ 작문 내역 인쇄 기능 제공
+                            ✔️ 연 요금제 30% 할인 혜택 적용
                         </BannerContent>
                         <ButtonContent>
                             <CheckButton
@@ -86,12 +88,13 @@ export default function PricingInfo() {
                                 Everything in Plus.
                             </Bold>{'\n'}
                             {'\n'}
+                            {'\n'}
                             ✔️ 교육 기관 가입 요금제{'\n'} 
                             <Small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(10개 이상의 계정 단체 등록 시 혜택 적용)</Small>{'\n'}
                             {'\n'}
                             {'\n'}
                             ✔️ 교육 전용 계정 할인 적용{'\n'}
-                            <Small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(월 기준 20%, 연 기준 30% 혜택 적용 - %는 임의)</Small>
+                            <Small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(월 기준 20%, 연 요금제 30% 할인 혜택 적용)</Small>
                         </BannerContent>
                         <ButtonContent>
                             <CheckButton
