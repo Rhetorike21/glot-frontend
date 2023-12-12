@@ -55,7 +55,7 @@ export default function Pricing() {
                     </Title>
                     <Button
                         onClick={() => {
-                            window.open("https://heyglot.com/writing", "_blank");
+                            window.open("https://www.heyglot.com/writing", "_blank");
                         }}
                     >
                         무료 체험하기
