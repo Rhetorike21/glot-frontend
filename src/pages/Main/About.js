@@ -28,7 +28,7 @@ export default function About() {
     const navigate = useNavigate();
 
     const onClickStart = () => {
-        window.open("http://www.heyglot.com/writing", "_blank");
+        window.open("https://www.heyglot.com/writing", "_blank");
     }
 
     return (

@@ -132,4 +132,12 @@ const MainTopBarStartBtn = styled.button`
     font-weight: 700;
     cursor: pointer;
     letter-spacing: -0.3px;
+    @media (max-width: 768px) {
+        font-size: 14px;
+        padding: 10px;
+    }
+    @media (max-width: 591px) {
+        font-size: 12px;
+        padding: 8px;
+    }
 `;

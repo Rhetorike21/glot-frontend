@@ -34,7 +34,7 @@ function Dropdown() {
                 </DropdownItem>
                 <DropdownItem
                     onClick={() => {
-                        window.open("http://www.heyglot.com/", "_blank");
+                        window.open("https://www.heyglot.com/", "_blank");
                     }}
                 >
                         <DropdownText>RHETORIKE <Bold>HOME</Bold></DropdownText>

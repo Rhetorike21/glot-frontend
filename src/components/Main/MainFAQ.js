@@ -100,6 +100,16 @@ const MainDescriptionTitle = styled.div`
     font-weight: 700;
     margin-top: 56px;
     margin-bottom: 21px;
+    @media (max-width: 768px) {
+        font-size: 32px;
+        margin-top: 32px;
+        margin-bottom: 8px;
+    }
+    @media (max-width: 576px) {
+        font-size: 28px;
+        margin-top: 24px;
+        margin-bottom: 0px;
+    }
 `;
 
 const MainDescriptionContent = styled.div`
