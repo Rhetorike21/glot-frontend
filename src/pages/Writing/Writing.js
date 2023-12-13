@@ -441,7 +441,7 @@ const TitleInput = styled.input`
     font-size: 30px;
     font-weight: 600;
     &::placeholder {
-        color: rgba(218, 219, 221, 1);
+        color: #b8b8b8;
     }
 `;
 
@@ -461,9 +461,10 @@ const ContentInput = styled.textarea`
     white-space: pre-line;
     resize: none;
     &::placeholder {
-        color: rgba(218, 219, 221, 1);
+        color: #b8b8b8;
         line-spacing: -0.03em;
         font-size: 14px;
+        font-weight: bold;
     }
 `;
 
