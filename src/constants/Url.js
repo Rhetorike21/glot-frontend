@@ -1,1 +1,1 @@
-export const BASE_URL = 'http://43.202.128.146/api';
+export const BASE_URL = 'https://www.heyglot.com/api';
