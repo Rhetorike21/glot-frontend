@@ -118,9 +118,6 @@ export default function Pricing() {
                             {'\n'}
                             {'\n'}
                             ✔️ GLOT Writing 초급 레벨 제공{'\n'}
-                            {'\n'}
-                            {'\n'}
-                            ✔️ PDF 다운로드 제공
                         </BannerContent>
                     </Banner>
                     <Banner>
