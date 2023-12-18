@@ -9,13 +9,11 @@ export default function PricingInfo() {
     const price = 18000;
 
     const onClickBasic = () => {
-        //navigate('/payment/basic');
-        alert('준비 중입니다.');
+        navigate('/payment/basic');
     }
 
     const onClickEnterprise = () => {
-        //navigate('/payment/enterprise');
-        alert('준비 중입니다.');
+        navigate('/payment/enterprise');
     }
 
     return(

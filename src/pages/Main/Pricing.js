@@ -17,27 +17,25 @@ export default function Pricing() {
     const isLogin = useRecoilValue(LoginState);
 
     const onClickBasic = () => {
-        // if(!isLogin){
-        //     alert('로그인 후 이용해주세요.');
-        //     navigate('/login');
-        //     return;
-        // }
-        // else{
-        //     navigate('/payment/basic');
-        // }
-        alert('준비 중입니다.')
+        if(!isLogin){
+            alert('로그인 후 이용해주세요.');
+            navigate('/login');
+            return;
+        }
+        else{
+            navigate('/payment/basic');
+        }
     }
 
     const onClickEnterprise = () => {
-        // if(!isLogin){
-        //     alert('로그인 후 이용해주세요.');
-        //     navigate('/login');
-        //     return;
-        // }
-        // else{
-        //     navigate('/payment/enterprise');
-        // }
-        alert('준비 중입니다.')
+        if(!isLogin){
+            alert('로그인 후 이용해주세요.');
+            navigate('/login');
+            return;
+        }
+        else{
+            navigate('/payment/enterprise');
+        }
     }
 
     return(
