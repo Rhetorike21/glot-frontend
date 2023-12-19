@@ -86,7 +86,7 @@ export default function PricingInfo() {
             GLOT 베이직(연간)
           </BannerTitle>
           <BannerPrice>
-            {new Intl.NumberFormat().format(price * 0.7)}
+            {new Intl.NumberFormat().format(price * 0.7 * 12)}
             <Small
               style={{
                 fontSize: "28px",
@@ -96,7 +96,7 @@ export default function PricingInfo() {
             >
               원
             </Small>
-            <Gray>/월</Gray>
+            <Gray>/년</Gray>
           </BannerPrice>
           <BannerContent>
             ✔️ 작문 입력 <Small>(글자 수 무제한)</Small>
@@ -193,7 +193,7 @@ export default function PricingInfo() {
             GLOT 엔터프라이즈(연간)
           </BannerTitle>
           <BannerPrice>
-            {new Intl.NumberFormat().format(price * 0.7)}
+            {new Intl.NumberFormat().format(price * 0.7 * 12)}
             <Small
               style={{
                 fontSize: "28px",
@@ -203,7 +203,7 @@ export default function PricingInfo() {
             >
               원
             </Small>
-            <Gray>/월, 유저당</Gray>
+            <Gray>/년, 유저당</Gray>
           </BannerPrice>
           <BannerContent>
             <Bold
