@@ -54,12 +54,20 @@ const ModalContainer = styled.div`
     border-radius: 8px;
     z-index: 999;
     padding: 24px;
+    @media (max-width: 768px) {
+        width: 327px;
+        height: 218px;
+    }
 `;
 
 const Title = styled.div`
     font-size: 24px;
     font-weight: 700;
     margin-top: 6px;
+    @media (max-width: 768px) {
+        font-size: 20px;
+        font-weight: 600;
+    }
 `;
 
 const Description = styled.div`
@@ -70,6 +78,11 @@ const Description = styled.div`
     white-space: pre-line;
     line-height: 25.6px;
     letter-spacing: -0.03em;
+    @media (max-width: 768px) {
+        font-size: 13px;
+        font-weight: 500;
+        line-height: 20px;
+    }
 `;
 
 const Bold = styled.span`
@@ -100,6 +113,12 @@ const Button = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    @media (max-width: 768px) {
+        width: 327px;
+        height: 42px;
+        font-size: 16px;
+        font-weight: 700;
+    }
 `;
 
 export default VersionNotice;

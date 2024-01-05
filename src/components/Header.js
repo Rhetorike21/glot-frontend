@@ -51,12 +51,22 @@ export default function Header() {
             <ButtonOuter>
                 {isLogin ? (
                     <ButtonArea>
-                        <Button onClick={onClickPayment}>요금제 플랜</Button>
+                        <Button 
+                            onClick={onClickPayment}
+                            style={{
+                                display: isMobile ? 'none' : 'block'
+                            }}
+                        >요금제 플랜</Button>
                         <Button onClick={onClickMyPage}>마이페이지</Button>
                     </ButtonArea>
                 ) : (
                     <ButtonArea>
-                        <Button onClick={onClickPayment}>요금제 플랜</Button>
+                        <Button 
+                            onClick={onClickPayment}
+                            style={{
+                                display: isMobile ? 'none' : 'block'
+                            }}
+                        >요금제 플랜</Button>
                         <Button onClick={onClickLogin}>로그인</Button>
                     </ButtonArea>     
                 )}
@@ -127,9 +137,6 @@ const ButtonOuter = styled.div`
     justify-content: flex-end;
     align-items: center;
     margin-left: 50px;
-    // @media (max-width: 768px) {
-    //     display: none;
-    // }
 `;
 
 const ButtonArea = styled.div`
