@@ -1,11 +1,13 @@
 import React,{useEffect, useState} from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+import { useMediaQuery } from 'react-responsive';
 
 import logo from '../../asset/GLOT logo.png';
 
 import CheckBox from '../../components/CheckBox';
 import EmailInput from '../../components/Signup/EmailInput';
+import MobileEmailInput from '../../components/Signup/MobilEmailInput';
 import Result from '../../components/Signup/SchoolSearch';
 
 import OrganizationSignUpApi from '../../services/OrgSignUp';
@@ -14,6 +16,10 @@ import MobileApi from '../../services/MobileAuth';
 import MobileCheckApi from '../../services/MobileAuthCode';
 
 export default function SignUp() {
+    const isMobile = useMediaQuery({
+        query: "(max-width: 768px)",
+    });
+
     const navigate = useNavigate();
 
     const [selectMethod, setSelectMethod] = useState('기관');
@@ -84,8 +90,7 @@ export default function SignUp() {
     const onClickMobileAuthCheck = async() => {
         try {
             const response = await MobileCheckApi(userMobileCode);
-            console.log(response); 
-            if(response.success===true){
+            if(response.data.success===true){
                 alert('인증이 완료되었습니다.');
                 setUserMobileAuth(true);
             }
@@ -101,34 +106,36 @@ export default function SignUp() {
 
     //회원가입
     const onClickSignUp = async() => {
-        if (userSchool === '') {
-            if (selectMethod === '기관') {
-                alert('기관명을 입력해주세요.');
-            }
-        }
-        else if (userName === '' || userMobile === '' || userEmail === '' || userId === '' || userPw === '' || userPwConfirm === '') {
-            alert('필수 입력 사항을 입력해주세요.');
-        }
-        else if (!isValidEmail) {
-            alert('이메일 형식이 올바르지 않습니다.');
-        }
-        else if (!service) {
-            alert('이용약관에 동의해주세요.');
-        }
         try {
+            // 필수 입력 항목 확인
+            if (userSchool === '' && selectMethod === '기관') {
+                alert('기관명을 입력해주세요.');
+                return;
+            } else if (userName === '' || userMobile === '' || userEmail === '' || userId === '' || userPw === '' || userPwConfirm === '') {
+                alert('필수 입력 사항을 입력해주세요.');
+                return;
+            } else if (!isValidEmail) {
+                alert('이메일 형식이 올바르지 않습니다.');
+                return;
+            } else if (!service) {
+                alert('이용약관에 동의해주세요.');
+                return;
+            }
+    
+            // API 호출
+            let response;
             if (selectMethod === '기관') {
-                const response = await OrganizationSignUpApi(userId, userPw, userName, userPhone, userMobile, userEmail, service, userMobileCode, userSchool);
+                response = await OrganizationSignUpApi(userId, userPw, userName, userPhone, userMobile, userEmail, service, userMobileCode, userSchool);
+            } else {
+                response = await PersonalSignUpApi(userId, userPw, userName, userPhone, userMobile, userEmail, service, userMobileCode);
             }
-            else {
-                const response = await PersonalSignUpApi(userId, userPw, userName, userPhone, userMobile, userEmail, service, userMobileCode);
-            }
+    
             alert('회원가입이 완료되었습니다.');
             navigate('/login');
+        } catch (error) {
+            alert(error);
         }
-        catch (error) {
-            console.log(error);
-        }
-    }
+    };
 
     return(
         <Container>
@@ -184,13 +191,13 @@ export default function SignUp() {
                             marginTop: '5px',
                         }}
                     >
-                        <Input
+                        <ShortInput
                             placeholder='관리자 휴대폰번호를 입력하세요'
                             type='text'
                             value={userMobile}
                             onChange={(e) => setUserMobile(e.target.value)}
                             style={{ 
-                                width: "73%",
+                                width: "293px",
                                 marginBottom: '0px',
                             }}
                         />
@@ -206,13 +213,13 @@ export default function SignUp() {
                             marginTop: '5px',
                         }}
                     >
-                        <Input
+                        <ShortInput
                             placeholder='6자리 입력'
                             type='text'
                             value={userMobileCode}
                             onChange={(e) => setUserMobileCode(e.target.value)}
                             style={{ 
-                                width: "73%",
+                                width: "293px",
                                 marginBottom: '0px',
                             }}
                         />
@@ -223,7 +230,12 @@ export default function SignUp() {
                     <Naming>
                         이메일 <Star>*</Star>
                     </Naming>
-                    <EmailInput userEmail={userEmail} setUserEmail={setUserEmail} margin='5px'/>
+                    {isMobile ? 
+                    (
+                        <MobileEmailInput setUserEmail={setUserEmail} margin='5px' width='337px'/>
+                    ):(
+                        <EmailInput userEmail={userEmail} setUserEmail={setUserEmail} margin='5px'/>
+                    )}
                     <Naming>
                         아이디 <Star>*</Star>
                     </Naming>
@@ -296,14 +308,14 @@ export default function SignUp() {
                             marginTop: '5px',
                         }}
                     >
-                        <Input
-                            placeholder='본인 인증이 가능한 휴대전화번호를 입력해주세요'
+                        <ShortInput
+                            placeholder='휴대전화번호를 입력해주세요'
                             type='text'
                             value={userMobile}
                             onChange={(e) => setUserMobile(e.target.value)}
                             style={{ 
-                                width: "73%",
-                                marginBottom: '0px',
+                                width: "293px",
+                                marginBottom: '0px'
                             }}
                         />
                         <InputButton onClick={onClickMobileAuth}>
@@ -318,13 +330,13 @@ export default function SignUp() {
                             marginTop: '5px',
                         }}
                     >
-                        <Input
+                        <ShortInput
                             placeholder='6자리 입력'
                             type='text'
                             value={userMobileCode}
                             onChange={(e) => setUserMobileCode(e.target.value)}
                             style={{ 
-                                width: "73%",
+                                width: "293px",
                                 marginBottom: '0px',
                             }}
                         />
@@ -335,7 +347,12 @@ export default function SignUp() {
                     <Naming>
                         이메일 <Star>*</Star>
                     </Naming>
-                    <EmailInput userEmail={userEmail} setUserEmail={setUserEmail} margin='5px'/>
+                    {isMobile ? 
+                    (
+                        <MobileEmailInput setUserEmail={setUserEmail} margin='5px' width='337px'/>
+                    ):(
+                        <EmailInput userEmail={userEmail} setUserEmail={setUserEmail} margin='5px'/>
+                    )}
                     <Naming>
                         아이디 <Star>*</Star>
                     </Naming>
@@ -441,6 +458,9 @@ const Container = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    @media (max-width: 768px) {
+        width: 100%;
+    }
 `;
 
 const InputArea = styled.div`
@@ -450,6 +470,9 @@ const InputArea = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    @media (max-width: 768px) {
+        width: 100%;
+    }
 `;
 
 const LogoArea = styled.div`
@@ -458,6 +481,10 @@ const LogoArea = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    @media (max-width: 768px) {
+        width: 100%;
+        height: 120px;
+    }
 `;
 
 const Logo = styled.img`
@@ -471,6 +498,10 @@ const Title = styled.div`
     font-weight: 700;
     letter-spacing: -0.5px;
     text-align: center;
+    @media (max-width: 768px) {
+        font-size: 24px;
+        font-weight: 600;
+    }
 `;
 
 const LoginButton = styled.button`
@@ -482,6 +513,9 @@ const LoginButton = styled.button`
     color: #6f7071;
     cursor: pointer;
     margin-top: 24px;
+    @media (max-width: 768px) {
+        display: none;
+    }
 `;
 
 const SelectBox = styled.div`
@@ -519,6 +553,9 @@ const InputContainer = styled.div`
     align-items: left;
     margin-top: 40px;
     margin-bottom: ${props => props.pwCheckSame ? '28px' : '3px'};
+    @media (max-width: 768px) {
+        width: 327px;
+    }
 `;
 
 const InputOuter = styled.div`
@@ -528,6 +565,9 @@ const InputOuter = styled.div`
     justify-content: space-between;
     align-items: center;
     margin-bottom: 28px;
+    @media (max-width: 768px) {
+        width: 337px;
+    }
 `;
 
 const InputButton = styled.div`
@@ -544,6 +584,10 @@ const InputButton = styled.div`
     font-weight: 400;
     cursor: pointer;
     margin-top: 5px;
+    @media (max-width: 768px) {
+        margin-left: 5px;
+        height: 56px;
+    }
 `;
 
 const Input = styled.input`
@@ -556,6 +600,24 @@ const Input = styled.input`
     padding-left: 15px;
     margin-top: 5px;
     margin-bottom: 28px;
+    @media (max-width: 768px) {
+        width: 312px;
+    }
+`;
+
+const ShortInput = styled.input`
+    width: 293px;
+    height: 48px;
+    border: 1px solid #eaebed;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 400;
+    padding-left: 15px;
+    margin-top: 5px;
+    margin-bottom: 28px;
+    @media (max-width: 768px) {
+        width: 210px;
+    }
 `;
 
 const Naming = styled.div`
@@ -578,6 +640,10 @@ const CheckContainer = styled.div`
     display: flex;
     align-items: left;
     justify-content: left;
+    @media (max-width: 768px) {
+        width: 327px;
+        flex-direction: column;
+    }
 `;
 
 const CheckArea = styled.div`
@@ -587,6 +653,10 @@ const CheckArea = styled.div`
     align-items: left;
     justify-content: center;
     margin-left: 10px;
+    @media (max-width: 768px) {
+        margin-left: 0px;
+        margin-top: 10px;
+    }
 `;
 
 const CheckNaming = styled.div`
@@ -618,6 +688,9 @@ const ButtonArea = styled.div`
     justify-content: center;
     margin-top: 40px;
     margin-bottom: 120px;
+    @media (max-width: 768px) {
+        width: 327px;
+    }
 `;
 
 const Button = styled.button`

@@ -1,5 +1,5 @@
-import './App.css';
 import React from 'react';
+import { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import About from './pages/Main/About';
@@ -22,6 +22,13 @@ import EnterprisePrice from './pages/Pricing/EnterprisePricing';
 import Payment from './pages/Pricing/Pricing';
 
 function App() {
+  function setScreenSize() {
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty("--vh", `${vh}px`); //"--vh"라는 속성으로 정의해준다.
+  }
+
+  window.addEventListener('resize', () => setScreenSize()); 
+
   return (
       <Routes>
         <Route path="/" element={<About />} />

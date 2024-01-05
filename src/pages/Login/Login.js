@@ -51,7 +51,6 @@ export default function Login() {
         }
         try {
             const response = await LoginApi(userId, userPw);
-            console.log(response);
             setCookie('token', response.token.refreshToken, { path: '/' })
             localStorage.setItem('token', response.token.accessToken);
             setIsLogin(true);
@@ -165,6 +164,9 @@ const Container = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    @media (max-width: 768px) {
+        height: calc(var(--vh, 1vh) * 100);
+    }
 `;
 
 const LogoArea = styled.div`
@@ -173,6 +175,9 @@ const LogoArea = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    @media (max-width: 768px) {
+        height: 150px;
+    }
 `;
 
 const Logo = styled.img`
@@ -184,10 +189,12 @@ const InputArea = styled.div`
     width: 700px;
     height: 100%;
     background-color: #FFFFFF;
-    border-radius: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    @media (max-width: 768px) {
+        width: 100%;
+    }
 `;
 
 const Title = styled.div`
@@ -197,6 +204,9 @@ const Title = styled.div`
     letter-spacing: -0.5px;
     text-align: center;
     white-space: pre-line;
+    @media (max-width: 768px) {
+        display: none;
+    }
 `;
 
 const SubTitle = styled.div`
@@ -208,6 +218,9 @@ const SubTitle = styled.div`
     white-space: pre-line;
     margin-top: 10px;
     color: #b7b8ba;
+    @media (max-width: 768px) {
+        display: none;
+    }
 `;
 
 const InnerContainer = styled.div`
@@ -217,6 +230,10 @@ const InnerContainer = styled.div`
     align-items: center;
     justify-content: center;
     margin-top: 12px;
+    @media (max-width: 768px) {
+        width: 327px;
+        margin-top: 0px;
+    }
 `;
 
 const InputContainer = styled.div`
@@ -244,6 +261,9 @@ const Input = styled.input`
     font-weight: 400;
     ::placeholder {
         color: rgba(183, 184, 186, 1);
+    }
+    @media (max-width: 768px) {
+        width: 302px;
     }
 `;
 

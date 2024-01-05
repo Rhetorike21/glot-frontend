@@ -1,10 +1,12 @@
 import React,{useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { useMediaQuery } from 'react-responsive';
 
 import logo from '../../asset/GLOT logo.png';
 
 import EmailInput from '../../components/Signup/EmailInput';
+import MobileEmailInput from '../../components/Signup/MobilEmailInput';
 
 import EditModal from '../../components/Modal/ResultModal';
 import Backdrop from '../../components/Modal/Backdrop';
@@ -15,6 +17,10 @@ import MobileCheckApi from '../../services/MobileAuthCode';
 import MobileApi from '../../services/MobileAuth';
 
 export default function Idsearch() {
+    const isMobile = useMediaQuery({
+        query: "(max-width: 768px)",
+    });
+
     const navigate = useNavigate();
 
     const [isResult, setIsResult] = useState(false); //아이디 찾기 결과 모달제어 변수
@@ -43,22 +49,26 @@ export default function Idsearch() {
         }
     }
 
-    const onClickCheckCode = () => {  
+    const onClickCheckCode = async () => {  
         try {
-            const response = MobileCheckApi(userMobileCode);
-            console.log(response)
-            setIsAuth(true);
+            const response = await MobileCheckApi(userMobileCode);
+
+            if (response.data.success) {
+                setIsAuth(true);
+                alert('인증되었습니다.');
+            } else {
+                throw new Error('인증번호가 일치하지 않습니다.');
+            }
         } catch (error) {
-            alert('인증번호가 일치하지 않습니다.');
+            alert(error.message || '인증번호가 일치하지 않습니다.');
         }
-    } 
+    }
 
     const onClickFindId = async () => {
         if (selectMethod === '휴대폰') {
             try {
                 const response = await IdSearchMobileApi(userName, userMobile, userMobileCode);
-                console.log(userName, userMobile, userMobileCode)
-                console.log(response)
+                console.log(response);
                 setSearchResult(response);
                 setIsResult(true);
             } catch (error) {
@@ -67,6 +77,7 @@ export default function Idsearch() {
         } else {
             try {
                 const response = await IdSearchEmailApi(userName, userEmail);
+                console.log(response)
                 alert('입력하신 이메일로 일치하는 아이디 정보를 발송했습니다.');
                 navigate('/login');
             } catch (error) {
@@ -164,7 +175,11 @@ export default function Idsearch() {
                             <Naming>
                                 이메일
                             </Naming>
-                            <EmailInput setUserEmail={setUserEmail} margin='5px'/>
+                            {isMobile ? (
+                                <MobileEmailInput setUserEmail={setUserEmail} margin='5px'/>
+                            ):(
+                                <EmailInput userEmail={userEmail} setUserEmail={setUserEmail} margin='5px'/>
+                            )}
                         </InputContainer>
                     )}
                     <ButtonArea>
@@ -192,21 +207,25 @@ export default function Idsearch() {
 
 const Container = styled.div`
     width: 100%;
-    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    @media (max-width: 768px) {
+        height: calc(var(--vh, 1vh) * 100);
+    }
 `;
 
 const InputArea = styled.div`
     width: 700px;
     height: 100%;
     background-color: #FFFFFF;
-    border-radius: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    @media (max-width: 768px) {
+        width: 100%;
+    }
 `;
 
 const InnerContainer = styled.div`
@@ -214,6 +233,9 @@ const InnerContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    @media (max-width: 768px) {
+        width: 100%;
+    }
 `;
 
 const LogoArea = styled.div`
@@ -222,6 +244,10 @@ const LogoArea = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    @media (max-width: 768px) {
+        width: 100%;
+        height: 120px;
+    }
 `;
 
 const Logo = styled.img`
@@ -236,7 +262,10 @@ const Title = styled.div`
     letter-spacing: -0.5px;
     text-align: center;
     white-space: pre-line;
-
+    @media (max-width: 768px) {
+        font-size: 24px;
+        font-weight: 600;
+    }
 `;
 
 const SubTitle = styled.div`
@@ -248,6 +277,10 @@ const SubTitle = styled.div`
     white-space: pre-line;
     margin-top: 5px;
     color: #b7b8ba;
+    @media (max-width: 768px) {
+        font-size: 13px;
+        font-weight: 500;
+    }
 `;
 
 const SelectBox = styled.div`
@@ -280,6 +313,9 @@ const InputContainer = styled.div`
     flex-direction: column;
     justify-content: center;
     margin-top: 40px;
+    @media (max-width: 768px) {
+        width: 327px;
+    }
 `;
 
 const Naming = styled.div`
@@ -327,6 +363,10 @@ const InputButton = styled.div`
     font-size: 14px;
     font-weight: 400;
     cursor: pointer;
+    @media (max-width: 768px) {
+        margin-left: 5px;
+        height: 56px;
+    }
 `;
 
 const ButtonArea = styled.div`
@@ -335,6 +375,10 @@ const ButtonArea = styled.div`
     flex-direction: row;
     justify-content: space-between;
     margin-top: 4px;
+    @media (max-width: 768px) {
+        width: 327px;
+        margin-bottom: 100px;
+    }
 `;
 
 const Button = styled.button`
@@ -348,5 +392,8 @@ const Button = styled.button`
     font-size: 14px;
     font-weight: 600;
     cursor: pointer;
+    @media (max-width: 768px) {
+        width: 155px;
+    }
 `;
 

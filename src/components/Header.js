@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import {useRecoilValue} from "recoil";
 import {LoginState} from "../data/Atom";
+import { useMediaQuery } from "react-responsive";
 
 import Dropdown from "../components/Writing/Dropdown";
 
@@ -11,6 +12,10 @@ import open from '../asset/dropOpen.png';
 import close from '../asset/dropClose.png';
 
 export default function Header() {
+    const isMobile = useMediaQuery({
+        query: "(max-width: 768px)",
+    });
+
     const navigate = useNavigate();
     
     const [isMenuOpen, setIsMenuOpen] = useState(false); //dropdown 제어
@@ -122,6 +127,9 @@ const ButtonOuter = styled.div`
     justify-content: flex-end;
     align-items: center;
     margin-left: 50px;
+    // @media (max-width: 768px) {
+    //     display: none;
+    // }
 `;
 
 const ButtonArea = styled.div`

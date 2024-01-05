@@ -1,8 +1,10 @@
 import React,{useState} from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+import { useMediaQuery } from 'react-responsive';
 
 import EmailInput from '../../components/Signup/EmailInput';
+import MobileEmailInput from '../../components/Signup/MobilEmailInput';
 import NoResultModal from '../../components/Modal/NoResultModal';
 import Backdrop from '../../components/Modal/Backdrop';
 
@@ -12,6 +14,10 @@ import MobileCheckApi from '../../services/MobileAuthCode';
 import logo from '../../asset/GLOT logo.png';
 
 export default function ChangePw() {
+    const isMobile = useMediaQuery({
+        query: "(max-width: 768px)",
+    });
+
     const navigate = useNavigate();
     
     const [selectMethod, setSelectMethod] = useState('휴대폰');
@@ -53,13 +59,14 @@ export default function ChangePw() {
     }
 
     const onClickCheckCode = () => {  
-        try {
-            const response = MobileCheckApi(userMobileCode);
-            setIsAuth(true);
-            checkChangeAuth();
-        } catch (error) {
-            console.log(error);
-        }
+        navigate('/member/newpw');
+        // try {
+        //     const response = MobileCheckApi(userMobileCode);
+        //     setIsAuth(true);
+        //     checkChangeAuth();
+        // } catch (error) {
+        //     console.log(error);
+        // }
     } 
 
     const onClickSearch = () => {
@@ -175,7 +182,11 @@ export default function ChangePw() {
                             <Naming>
                                 이메일
                             </Naming>
-                            <EmailInput setUserEmail={setUserEmail} margin='5px'/>
+                            {isMobile ? (
+                                <MobileEmailInput setUserEmail={setUserEmail} margin='5px'/>
+                            ):(
+                                <EmailInput userEmail={userEmail} setUserEmail={setUserEmail} margin='5px'/>
+                            )}
                         </InputContainer>
                     )}
                     <ButtonArea>
@@ -217,6 +228,9 @@ const InputArea = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    @media (max-width: 768px) {
+        width: 100%;
+    }
 `;
 
 const InnerContainer = styled.div`
@@ -224,6 +238,9 @@ const InnerContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    @media (max-width: 768px) {
+        width: 100%;
+    }
 `;
 
 const LogoArea = styled.div`
@@ -232,6 +249,10 @@ const LogoArea = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    @media (max-width: 768px) {
+        width: 100%;
+        height: 120px;
+    }
 `;
 
 const Logo = styled.img`
@@ -246,7 +267,10 @@ const Title = styled.div`
     letter-spacing: -0.5px;
     text-align: center;
     white-space: pre-line;
-
+    @media (max-width: 768px) {
+        font-size: 24px;
+        font-weight: 600;
+    }
 `;
 
 const SubTitle = styled.div`
@@ -258,6 +282,10 @@ const SubTitle = styled.div`
     white-space: pre-line;
     margin-top: 5px;
     color: #b7b8ba;
+    @media (max-width: 768px) {
+        font-size: 13px;
+        font-weight: 500;
+    }
 `;
 
 const SelectBox = styled.div`
@@ -290,6 +318,9 @@ const InputContainer = styled.div`
     flex-direction: column;
     justify-content: center;
     margin-top: 40px;
+    @media (max-width: 768px) {
+        width: 327px;
+    }
 `;
 
 const Naming = styled.div`
@@ -337,6 +368,10 @@ const InputButton = styled.div`
     font-size: 14px;
     font-weight: 400;
     cursor: pointer;
+    @media (max-width: 768px) {
+        margin-left: 5px;
+        height: 56px;
+    }
 `;
 
 const ButtonArea = styled.div`
@@ -346,6 +381,10 @@ const ButtonArea = styled.div`
     justify-content: space-between;
     margin-top: 4px;
     margin-bottom: 46px;
+    @media (max-width: 768px) {
+        width: 327px;
+        margin-bottom: 100px;
+    }
 `;
 
 const Button = styled.button`
@@ -359,5 +398,8 @@ const Button = styled.button`
     font-size: 14px;
     font-weight: 600;
     cursor: pointer;
+    @media (max-width: 768px) {
+        width: 155px;
+    }
 `;
 

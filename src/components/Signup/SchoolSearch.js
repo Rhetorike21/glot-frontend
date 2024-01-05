@@ -118,6 +118,9 @@ const Container = styled.div`
     align-items: center;
     width: 100%;
     margin-bottom: 20px;
+    @media (max-width: 768px) {
+        width: 100%;
+    }
 `;
 
 const Input = styled.input`
@@ -131,6 +134,9 @@ const Input = styled.input`
     font-size: 13px;
     font-weight: 400;
     padding-left: 15px;
+    @media (max-width: 768px) {
+      width: calc(100% - 15px);
+  }
 `;
 
 const ResultArea = styled.div`
@@ -155,6 +161,10 @@ const ResultArea = styled.div`
         background-color: rgba(183, 184, 186, 1);
         border-radius: 6px;
         height: 20%;
+    }
+    @media (max-width: 768px) {
+        width: 312px;
+        top: 285px;
     }
 `;  
 

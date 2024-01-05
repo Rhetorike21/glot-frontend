@@ -49,12 +49,19 @@ const ModalContainer = styled.div`
     border-radius: 8px;
     z-index: 999;
     padding: 30px;
+    @media (max-width: 768px) {
+        width: 302px;
+        height: 240px;
+    }
 `;
 
 const Title = styled.div`
     font-size: 24px;
     font-weight: 700;
     margin-top: 10px;
+    @media (max-width: 768px) {
+        font-size: 18px;
+    }
 `;
 
 const Description = styled.div`
@@ -64,16 +71,9 @@ const Description = styled.div`
     margin-top: 20px;
     white-space: pre-line;
     line-height: 1.5;
-`;
-
-const IdList = styled.div`
-    width: 100%;
-    height: 130px;
-    margin-top: 20px;
-    border: none;
-    border-radius: 7px;
-    background-color: #f2f3f5;
-    overflow: scroll;
+    @media (max-width: 768px) {
+        font-size: 14px;
+    }
 `;
 
 const ButtonArea = styled.div`
@@ -83,6 +83,9 @@ const ButtonArea = styled.div`
     flex-direction: row;
     justify-content: space-between;
     margin-top: 50px;
+    @media (max-width: 768px) {
+        margin-top: 30px;
+    }
 `;
 
 const Button = styled.div`
@@ -97,6 +100,10 @@ const Button = styled.div`
     font-size: 18px;
     font-weight: 700;
     line-height: 50px;
+    @media (max-width: 768px) {
+        font-size: 16px;
+        width: 145px;
+    }
 `;
 
 export default NoResultModal;

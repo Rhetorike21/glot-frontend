@@ -32,6 +32,11 @@ const ModalContainer = styled.div`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    @media (max-width: 768px) {
+        width: 327px;
+        top: 30%;
+        padding: 10px 15px;
+    }
 `;
 
 const Text = styled.div`
@@ -40,6 +45,9 @@ const Text = styled.div`
     line-height: 22.4px;
     letter-spacing: -0.03em;
     color: rgba(255, 255, 255, 1);
+    @media (max-width: 768px) {
+        font-size: 12px;
+    }
 `;
 
 const Button = styled.div`
@@ -50,4 +58,8 @@ const Button = styled.div`
     background-size: cover;
     margin-left: 10px;
     cursor: pointer;
+    @media (max-width: 768px) {
+        width: 18px;
+        height: 14px;
+    }
 `;

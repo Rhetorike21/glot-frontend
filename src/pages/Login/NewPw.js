@@ -103,21 +103,26 @@ export default function NewPw() {
 
 const Container = styled.div`
     width: 100%;
-    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    @media (max-width: 768px) {
+        width: 100%;
+        height: calc(var(--vh, 1vh) * 100);
+    }
 `;
 
 const InputArea = styled.div`
     width: 700px;
     height: 100%;
     background-color: #FFFFFF;
-    border-radius: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    @media (max-width: 768px) {
+        width: 100%;
+    }
 `;
 
 const LogoArea = styled.div`
@@ -126,6 +131,10 @@ const LogoArea = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    @media (max-width: 768px) {
+        width: 100%;
+        height: 120px;
+    }
 `;
 
 const Logo = styled.img`
@@ -138,6 +147,9 @@ const InnerContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    @media (max-width: 768px) {
+        width: 100%;
+    }
 `;
 
 const Content = styled.div`
@@ -156,6 +168,10 @@ const Title = styled.div`
     letter-spacing: -0.5px;
     text-align: center;
     white-space: pre-line;
+    @media (max-width: 768px) {
+        font-size: 24px;
+        font-weight: 600;
+    }
 `;
 
 const SubTitle = styled.div`
@@ -167,6 +183,10 @@ const SubTitle = styled.div`
     white-space: pre-line;
     margin-top: 10px;
     color: #b7b8ba;
+    @media (max-width: 768px) {
+        font-size: 12px;
+        font-weight: 500;
+    }
 `;
 
 const InputContainer = styled.div`
@@ -176,6 +196,9 @@ const InputContainer = styled.div`
     justify-content: center;
     margin-top: 56px;
     margin-bottom: 28px;
+    @media (max-width: 768px) {
+        width: 327px;
+    }
 `;
 
 const Naming = styled.div`
@@ -198,6 +221,9 @@ const Input = styled.input`
     padding-left: 15px;
     color: #b7b8ba;
     margin-bottom: 28px;
+    @media (max-width: 768px) {
+        width: calc(100% - 23px);
+    }
 `;
 
 const Warning = styled.div`
@@ -216,6 +242,9 @@ const ButtonArea = styled.div`
     flex-direction: row;
     justify-content: space-between;
     margin-top: 4px;
+    @media (max-width: 768px) {
+        width: 327px;
+    }
 `;
 
 const Button = styled.div`
@@ -229,5 +258,8 @@ const Button = styled.div`
     font-size: 14px;
     font-weight: 600;
     cursor: pointer;
+    @media (max-width: 768px) {
+        width: 155px;
+    }
 `;
 

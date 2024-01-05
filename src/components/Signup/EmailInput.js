@@ -1,11 +1,10 @@
 import React,{useState, useEffect} from 'react';
 import styled from 'styled-components';
 
-export default function EmailInput2(props) {
+export default function Email(props) {
     const [userEmailId, setUserEmailId] = useState('');
     const [writeEmailDomain, setWriteEmailDomain] = useState(''); //직접입력시 사용하는 state
     const [selectedEmailDomain, setSelectedEmailDomain] = useState(''); //직접입력이 아닌경우 사용하는 state
-
 
     useEffect(() => {
         if (writeEmailDomain) {
@@ -75,7 +74,7 @@ export default function EmailInput2(props) {
                 <option value="yahoo.com">yahoo.com</option>
                 <option value="hotmail.com">hotmail.com</option>
                 <option value="nestgo.com">nestgo.com</option>
-            </SelectEmailDomain>
+            </SelectEmailDomain> 
         </InputOuter>
     )
 }
