@@ -48,8 +48,8 @@ const ModalWrapper = styled.div`
     padding: 8px;
     @media (max-width: 768px) {
         width: calc(100% - 16px);
-        height: 150px;
-        top: ${props => props.coordinates.y - 110}px;
+        height: 220px;
+        top: 50vh;
         left: 0px;
         border: none;
         border-radius: 0px;
@@ -78,13 +78,13 @@ const SelectContent = styled.div`
         border-radius: 6px;
     }
     @media (max-width: 768px) {
-        width: calc(100% - 8px);
-        padding: 4px;
+        width: calc(100% - 16px);
+        padding: 8px;
         flex-direction: row;
         justify-content: flex-start;
         align-items: center;
         background-color: white;
-        margin-bottom: 5px;
+        margin-bottom: 8px;
         border-radius: 6px;
     }
 `;

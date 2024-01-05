@@ -106,6 +106,15 @@ const ModalWrapper = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center; 
+    @media (max-width: 768px) {
+        width: calc(100% - 16px);
+        top: 50vh;
+        left: 0px;
+        border: none;
+        border-radius: 0px;
+        box-shadow: none;
+        background-color: #F8F9FB;
+    }
 `;
 
 const ModalTitle = styled.div`
