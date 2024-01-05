@@ -302,7 +302,7 @@ export default function Writing() {
                                     value={writingContent}
                                     onChange={handleContentChange}
                                     onInput={handleTextAreaResize}
-                                    disabled={isVersionNotified}
+                                    disabled={isVersionNotified || isSlashTyped}
                                 />
                             </ContentArea>
                         </WritingArea>
@@ -337,11 +337,18 @@ export default function Writing() {
                             </TitleArea>
                             <ContentArea ref={writingAreaRef}>
                                 <ContentInput
-                                    placeholder="문장을 입력하여 작문을 시작해보세요!"
+                                    placeholder="
+                                    🖍️&nbsp;여기에서부터 작문을 시작하세요.&#13;&#10;
+                                    1. 원하는 문장을 입력하세요.&#13;&#10;
+                                    2. 원하는 문장 뒤에 '/'[키보드에서 '/' key]를 누르세요.&#13;&#10;
+                                    3. GLOT Writing이 전개 유형들을 추천하면, 하나의 전개 유형을 선택해 주세요.&#13;&#10;
+                                    4. GLOT Writing이 사용자가 선택한 전개 유형에 해당하는 문장들을 추천하면, 하나의 문장을 &nbsp;&nbsp;&nbsp;선택해 주시거나 전개 유형에 해당하는 문장을 직접 입력해 주세요.&#13;&#10;
+                                    5. 2번부터 4번까지의 과정을 반복하면서, 문장을 선택하고 변형하여, 원하는 작문을 완성하세요.
+                                    "
                                     value={writingContent}
                                     onChange={handleContentChange}
                                     onInput={handleTextAreaResize}
-                                    disabled={isVersionNotified}
+                                    disabled={isVersionNotified || isSlashTyped}
                                 />
                             </ContentArea>
                         </WritingArea>
@@ -373,6 +380,9 @@ const Container = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    @media (max-width: 768px) {
+        display: block;
+    }
 `;
 
 const Content = styled.div`
@@ -408,6 +418,9 @@ const Button = styled.button`
     &:hover {
         background-color: #E5E7E9;
     }
+    @media (max-width: 768px) {
+        display: none;
+    }
 `;
 
 const WritingArea = styled.div`
@@ -424,6 +437,14 @@ const WritingArea = styled.div`
     margin-top: 24px;
     overflow: auto;
     animation: 0.3s ease-in-out;
+    @media (max-width: 768px) {
+        width: calc(100% - 24px);
+        height: 100%;
+        min-height: calc(100vh - 167px);
+        margin-top: 0px;
+        padding: 12px;
+        padding-bottom: 0px;
+    }
 `;
 
 const TitleArea = styled.div`
@@ -443,6 +464,10 @@ const TitleInput = styled.input`
     &::placeholder {
         color: #b8b8b8;
     }
+    @media (max-width: 768px) {
+        font-size: 20px;
+        width: calc(100% - 20px);
+    }
 `;
 
 const ContentArea = styled.div`
@@ -460,11 +485,16 @@ const ContentInput = styled.textarea`
     line-height: 28.8px;
     white-space: pre-line;
     resize: none;
+    background-color: #FFFFFF;
     &::placeholder {
         color: #b8b8b8;
         line-spacing: -0.03em;
         font-size: 14px;
         font-weight: bold;
+    }
+    @media (max-width: 768px) {
+        min-height: calc(100vh - 247px);
+        width: calc(100% - 20px);
     }
 `;
 
@@ -479,6 +509,9 @@ const ButtonArea = styled.div`
     justify-content: center;
     align-items: center;
     display: ${props => (props.userType === 'FREE' ? 'none' : 'flex')};
+    @media (max-width: 768px) {
+        width: 100%;
+    }
 `;
 
 const SaveButton = styled.button`
@@ -491,4 +524,7 @@ const SaveButton = styled.button`
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
+    @media (max-width: 768px) {
+        width: 100%;
+    }
 `;

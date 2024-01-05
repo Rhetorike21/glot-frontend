@@ -46,6 +46,16 @@ const ModalWrapper = styled.div`
     justify-content: center;
     align-items: center;
     padding: 8px;
+    @media (max-width: 768px) {
+        width: calc(100% - 16px);
+        height: 150px;
+        top: ${props => props.coordinates.y - 110}px;
+        left: 0px;
+        border: none;
+        border-radius: 0px;
+        box-shadow: none;
+        background-color: #F8F9FB;
+    }
 `;
 
 const ModalContent = styled.div`
@@ -67,12 +77,25 @@ const SelectContent = styled.div`
         background: rgba(242, 243, 245, 1);
         border-radius: 6px;
     }
+    @media (max-width: 768px) {
+        width: calc(100% - 8px);
+        padding: 4px;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        background-color: white;
+        margin-bottom: 5px;
+        border-radius: 6px;
+    }
 `;
 
 const SelectTitle = styled.div`
     font-size: 16px;
     font-weight: 500;
     color: rgba(91, 92, 94, 1);
+    @media (max-width: 768px) {
+        font-size: 14px;
+    }
 `;
 
 const SelectDescription = styled.div`
@@ -80,4 +103,9 @@ const SelectDescription = styled.div`
     font-weight: 400;
     color: rgba(151, 152, 154, 1);
     margin-top: 5px;
+    @media (max-width: 768px) {
+        font-size: 10px;
+        margin-left: 10px;
+        margin-bottom: 5px;
+    }
 `;
