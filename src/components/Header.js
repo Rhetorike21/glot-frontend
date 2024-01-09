@@ -115,7 +115,7 @@ export default function Header(props) {
 }
 
 const Container = styled.div`
-    width: 100%;
+    width: calc(100% - 2px);
     height: 80px;
     background-color: #fff;
     display: flex;
@@ -156,7 +156,7 @@ const MenuArea = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    @media (max-width: 900px) {
+    @media (max-width: 768px) {
         display: none;
     }
 `;

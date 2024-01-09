@@ -263,7 +263,7 @@ const Title = styled.div`
   width: 100%;
   height: 100%;
   font-size: 36px;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 50.4px;
   letter-spacing: -0.03em;
   text-align: center;
@@ -272,13 +272,16 @@ const Title = styled.div`
 `;
 
 const BannerArea = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  margin-top: 53px;
-  margin-bottom: 96px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 53px;
+    margin-bottom: 96px;
+    @media (max-width: 960px) {
+      flex-direction: column;
+    }
 `;
 
 const Banner = styled.div`
@@ -288,6 +291,10 @@ const Banner = styled.div`
   background-color: rgba(255, 255, 255, 1);
   margin: 0 18px;
   box-shadow: 0px 5px 60px 0px rgba(62, 96, 130, 0.16);
+  @media (max-width: 960px) {
+    margin-top: 48px;
+    width: 70%;
+  }
 `;
 
 const BannerTitle = styled.div`
@@ -323,6 +330,9 @@ const BannerPrice = styled.div`
   justify-content: flex-start;
   align-items: end;
   border-bottom: 1px solid rgba(242, 243, 245, 1);
+  @media (max-width: 960px) {
+    justify-content: center;
+  }
 `;
 
 const BannerContent = styled.div`

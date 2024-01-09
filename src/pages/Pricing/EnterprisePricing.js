@@ -2,6 +2,7 @@ import React,{ useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { useQuery } from "react-query";
+import { useMediaQuery } from "react-responsive";
 
 import Header from "../../components/Header";
 import PricingModal from "../../components/Modal/PricingMenuModal";
@@ -16,6 +17,10 @@ import open from "../../asset/openIcon.png";
 import close from "../../asset/closeIcon.png";
 
 export default function EnterprisePricePlan() {
+    const isTablet = useMediaQuery({
+        query: "(max-width: 960px)",
+    });
+
     const modalRef = useRef();
 
     const Price = 18000;
@@ -243,33 +248,37 @@ export default function EnterprisePricePlan() {
                                         </Value>
                                     </BoxContent>
                                 </BoxContainer>
-                                <CheckBox>
-                                    <input 
-                                        type="checkbox" 
-                                        id="checkbox" 
-                                        checked={isCheck}
-                                        onChange={() => setIsCheck(!isCheck)}
-                                    />
-                                    <Link
-                                        href="https://rhetorike.notion.site/7fdf82818471443aa6746139a446ee43?pvs=4"
-                                        target="_blank"
+                                <div style={{
+                                    display: isTablet ? 'none' : 'contents',
+                                }}>
+                                    <CheckBox>
+                                        <input 
+                                            type="checkbox" 
+                                            id="checkbox" 
+                                            checked={isCheck}
+                                            onChange={() => setIsCheck(!isCheck)}
+                                        />
+                                        <Link
+                                            href="https://rhetorike.notion.site/7fdf82818471443aa6746139a446ee43?pvs=4"
+                                            target="_blank"
+                                        >
+                                            정기과금, 이용약관
+                                        </Link>
+                                        의 내용을 확인하였고 동의합니다.
+                                    </CheckBox>
+                                    <Button
+                                        style={{
+                                            backgroundColor : isCheck ? 'rgba(50, 144, 255, 1)' : 'rgba(183, 184, 186, 1)',
+                                        }}
+                                        disabled={!isCheck}
+                                        onClick={onClickOrder}
                                     >
-                                        정기과금, 이용약관
-                                    </Link>
-                                    의 내용을 확인하였고 동의합니다.
-                                </CheckBox>
-                                <Button
-                                    style={{
-                                        backgroundColor : isCheck ? 'rgba(50, 144, 255, 1)' : 'rgba(183, 184, 186, 1)',
-                                    }}
-                                    disabled={!isCheck}
-                                    onClick={onClickOrder}
-                                >
-                                    결제 신청
-                                </Button>
-                                <Notice>
-                                    *결제 정보는 SSL 암호화로 안전하게 전송되며 카드정보를 서버에 저장하지 않습니다.
-                                </Notice>
+                                        결제 신청
+                                    </Button>
+                                    <Notice>
+                                        *결제 정보는 SSL 암호화로 안전하게 전송되며 카드정보를 서버에 저장하지 않습니다.
+                                    </Notice>
+                                </div>
                             </LeftBox>
                             <RightBox>
                                 <BoxContainer
@@ -398,6 +407,48 @@ export default function EnterprisePricePlan() {
                                     />
                                 </BoxContainer>
                             </RightBox>
+                            <ButtonOuter 
+                                style={{
+                                    display: isTablet ? 'contents' : 'none',
+                                }}
+                            >
+                                    <CheckBox
+                                        style={{
+                                            width: '70%',
+                                        }}
+                                    >
+                                        <input 
+                                            type="checkbox" 
+                                            id="checkbox" 
+                                            checked={isCheck}
+                                            onChange={() => setIsCheck(!isCheck)}
+                                        />
+                                        <Link
+                                            href="https://rhetorike.notion.site/7fdf82818471443aa6746139a446ee43?pvs=4"
+                                            target="_blank"
+                                        >
+                                            정기과금, 이용약관
+                                        </Link>
+                                        의 내용을 확인하였고 동의합니다.
+                                    </CheckBox>
+                                    <Button
+                                        style={{
+                                            backgroundColor : isCheck ? 'rgba(50, 144, 255, 1)' : 'rgba(183, 184, 186, 1)',
+                                            width: '70%',
+                                        }}
+                                        disabled={!isCheck}
+                                        onClick={onClickOrder}
+                                    >
+                                        결제 신청
+                                    </Button>
+                                    <Notice
+                                        style={{
+                                            width: '70%',
+                                        }}
+                                    >
+                                        *결제 정보는 SSL 암호화로 안전하게 전송되며 카드정보를 서버에 저장하지 않습니다.
+                                    </Notice>
+                                </ButtonOuter>
                         </Box>
                     </InnerContainer>
                 </InnerContent>
@@ -436,7 +487,11 @@ const InnerContent = styled.div`
     align-items: center;
     min-width: 934px;
     flex: 1;
-    margin-top: 3px;
+    margin-top: 3px
+    border: 1px solid black;
+    @media (max-width: 960px) {
+        min-width: 0px;
+    }
 `;
 
 const InnerContainer = styled.div`
@@ -447,6 +502,9 @@ const InnerContainer = styled.div`
     justify-content: centet;
     align-items: center;
     background: linear-gradient(to right, white 50%, rgba(248, 249, 251, 1) 50%);
+    @media (max-width: 960px) {
+        background: white;
+    }
 `;
 
 const TextArea = styled.div`
@@ -457,6 +515,9 @@ const TextArea = styled.div`
     justify-content: center;
     align-items: left;
     margin-top: 56px;
+    @media (max-width: 960px) {
+        width: 100%;
+    }
 `;
 
 const Title = styled.div`
@@ -467,6 +528,11 @@ const Title = styled.div`
     color: rgba(17, 17, 17, 1);
     text-align: left;
     margin-bottom: 16px;
+    @media (max-width: 960px) {
+        text-align: center;
+        font-size: 28px;
+        font-weight: 600;
+    }
 `;
 
 const Description = styled.div`
@@ -477,6 +543,11 @@ const Description = styled.div`
     color: rgba(151, 152, 154, 1);
     text-align: left;
     white-space: pre-line;
+    @media (max-width: 960px) {
+        text-align: center;
+        font-size: 14px;
+        font-weight: 400;
+    }
 `;
 
 const Box = styled.div`
@@ -485,6 +556,12 @@ const Box = styled.div`
     margin-top: 56px;
     display: flex;
     justify-content: space-between;
+    @media (max-width: 960px) {
+        width: 100%;
+        flex-direction: column;
+        height: 100%;
+        align-items: center;
+    }
 `;
 
 const LeftBox = styled.div`
@@ -492,6 +569,11 @@ const LeftBox = styled.div`
     height: 100%;
     border-radius: 14px;
     border: none;
+    @media (max-width: 960px) {
+        width: 70%;
+        height: 100%;
+        margin-bottom: 56px;
+    }
 `;
 
 const BoxContainer = styled.div`
@@ -660,6 +742,9 @@ const Button = styled.button`
 
 const RightBox = styled.div`
     width: 422px;
+    @media (max-width: 960px) {
+        width: 70%;
+    }
 `;
 
 const InputName = styled.div`
@@ -748,4 +833,11 @@ const Option = styled.option`
     color: rgba(111, 112, 113, 1);
 `;
 
-
+const ButtonOuter = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-left: 50px;
+    border: 1px solid black;
+`;
