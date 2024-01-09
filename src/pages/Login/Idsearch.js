@@ -120,7 +120,7 @@ export default function Idsearch() {
                             </Naming>
                             <InputOuter>
                                 <Input
-                                    placeholder="이름을 입력해주세요"
+                                    placeholder="이름을 입력해 주세요"
                                     type="text"
                                     value={userName}
                                     onChange={(e) => setUserName(e.target.value)}
@@ -131,7 +131,7 @@ export default function Idsearch() {
                             </Naming>
                             <InputOuter>
                                 <Input
-                                    placeholder='휴대폰번호를 입력해주세요'
+                                    placeholder='휴대폰번호를 입력해 주세요'
                                     type='text'
                                     value={userMobile}
                                     onChange={(e) => setUserMobile(e.target.value)}
@@ -142,11 +142,11 @@ export default function Idsearch() {
                                 </InputButton>
                             </InputOuter>
                             <Naming>
-                                인증번호
+                                인증 번호
                             </Naming>
                             <InputOuter>
                                 <Input
-                                    placeholder='인증번호를 입력하세요'
+                                    placeholder='인증 번호'
                                     type='text'
                                     value={userMobileCode}
                                     onChange={(e) => setUserMobileCode(e.target.value)}

@@ -107,13 +107,13 @@ const ModalWrapper = styled.div`
     justify-content: center;
     align-items: center; 
     @media (max-width: 768px) {
-        width: calc(100% - 16px);
-        top: 50vh;
+        width: 100%;
+        top: 38vh;
         left: 0px;
-        border: none;
+        border: 1px solid #eaebed;
         border-radius: 0px;
         box-shadow: none;
-        background-color: #F8F9FB;
+        overflow-y: scroll;
     }
 `;
 
@@ -211,4 +211,10 @@ const LoadingMessage = styled.div`
     font-weight: 500;
     color: #33B864;
     padding: 20px;
+    @media (max-width: 768px) {
+        height: 210px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 `;

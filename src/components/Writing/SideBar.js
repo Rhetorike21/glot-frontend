@@ -1,7 +1,8 @@
-import React, {useState, useEffect, useRef} from 'react';
-import styled, {keyframes} from 'styled-components';
+import React, {useState, useEffect, useRef, use} from 'react';
+import styled from 'styled-components';
 import dayjs from 'dayjs';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { useMediaQuery } from 'react-responsive';
 
 import { WritingId, WritingContent, WritingTitle } from '../../data/Atom';
 
@@ -17,6 +18,10 @@ import more from '../../asset/more.png';
 import plus from '../../asset/plus.png';
 
 export default function SideBar(props) {
+    const isMobile = useMediaQuery({
+        query: "(max-width: 768px)",
+    });
+
     const modalRef = useRef();
 
     const [writingId, setWritingId] = useRecoilState(WritingId); // 작문 고유 id
@@ -55,6 +60,9 @@ export default function SideBar(props) {
                     console.log(error);
                 });
         }
+        if(isMobile){
+            props.setIsSideBarOpen(false)
+        }
         // const initialId = '';
         // const initialTitle = '';
         // const initialContent = '';
@@ -75,6 +83,10 @@ export default function SideBar(props) {
     };
 
     const onClickDown = (writingId) => {
+        if (isMobile) {
+            alert('작문 삭제, 다운로드 기능은 PC 환경에서 이용할 수 있습니다.')
+            return;
+        }
         setWritingId(writingId);
         setIsOpenDownload(true); // 모달 창을 여는 동작은 좌표 업데이트 이후에 실행
     }
@@ -166,9 +178,15 @@ export default function SideBar(props) {
     return (
         <Container isSideBarOpen={props.isSideBarOpen} sidebarHeight={props.sidebarHeight}>
             <TopArea>
+                {isMobile ? 
+                <Title>
+                    작문 목록
+                </Title>
+                :
                 <Title>
                     GLOT <Bold>Writing</Bold>
                 </Title>
+                }
                 <Button onClick={onClickClose}>
                     <img 
                         src={close}
@@ -222,7 +240,14 @@ export default function SideBar(props) {
                                 ref={provided.innerRef}
                                 {...provided.draggableProps}
                                 {...provided.dragHandleProps}
-                                onClick={() => setWritingId(item.id)}
+                                onClick={() => 
+                                    {
+                                        setWritingId(item.id)
+                                        if(isMobile){
+                                            props.setIsSideBarOpen(false)
+                                        }
+                                    }
+                                }
                                 >
                                 <WritingItem>{item.title}</WritingItem>
                                 <MoreButton 
@@ -271,6 +296,13 @@ const Container = styled.div`
     align-items: center;
     border-right: 1px solid rgba(242, 243, 245, 1);
     box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.04);
+    @media (max-width: 768px) {
+        width: calc(100% - 16px);
+        height: calc(100% + 100px);
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
 `;
 
 const TopArea = styled.div`
@@ -283,7 +315,10 @@ const TopArea = styled.div`
     border-bottom: 1px solid #f2f3f5;
     padding-bottom: 5px;
     letter-spacing: -0.03em;
-
+    @media (max-width: 768px) {
+        width: 100%;
+        height: 80px;
+    }
 `;
 
 const Title = styled.div`
@@ -291,6 +326,11 @@ const Title = styled.div`
     justify-content: center;
     align-items: center;
     letter-spacing: -0.03em;
+    @media (max-width: 768px) {
+        width: 100%;
+        font-size: 20px;
+        font-weight: 600;
+    }
 `;
 
 const Bold = styled.span`
@@ -362,6 +402,9 @@ const Icon = styled.div`
     justify-content: center;
     align-items: center;
     color: #97989A;
+    @media (max-width: 768px) {
+        left: 103px;
+    }
 `;
 
 const Text = styled.div`
@@ -375,6 +418,9 @@ const WritingListArea = styled.div`
     display: flex;
     flex-direction: column;
     align-items: left;
+    @media (max-width: 768px) {
+        margin-top: 20px;
+    }
 `;
 
 const MonthTitle = styled.div`

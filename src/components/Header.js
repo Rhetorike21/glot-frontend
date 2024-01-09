@@ -1,17 +1,21 @@
 import React, {useState} from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import {useRecoilValue} from "recoil";
-import {LoginState} from "../data/Atom";
 import { useMediaQuery } from "react-responsive";
+import { useCookies } from "react-cookie";
+import { UserType, LoginState } from "../data/Atom";
+import {useRecoilState} from "recoil";
 
 import Dropdown from "../components/Writing/Dropdown";
+
+import LogoutApi from "../services/Logout";
 
 import logo from "../asset/GLOT logo.png";
 import open from '../asset/dropOpen.png';
 import close from '../asset/dropClose.png';
+import menu from '../asset/menu.png';
 
-export default function Header() {
+export default function Header(props) {
     const isMobile = useMediaQuery({
         query: "(max-width: 768px)",
     });
@@ -19,11 +23,29 @@ export default function Header() {
     const navigate = useNavigate();
     
     const [isMenuOpen, setIsMenuOpen] = useState(false); //dropdown 제어
-    const isLogin = useRecoilValue(LoginState);
+    const [userType, setUserType] = useRecoilState(UserType);
+    const [loginState, setLoginState] = useRecoilState(LoginState);
+    const [cookies, setCookie, removeCookie] = useCookies(); 
 
     const onClickLogin = () => {
         navigate('/login');
     }
+
+    const onClickLogout = async () => {
+        try {
+            const auth = localStorage.getItem('token');
+            const refresh = cookies.token;
+            await LogoutApi(auth, refresh);
+        } catch (error) {
+          console.error('로그아웃 중 오류 발생:', error);
+        }
+        removeCookie('token');
+        localStorage.removeItem('token');
+        setLoginState(false);
+        setUserType('FREE');
+        alert('로그아웃 되었습니다.');
+        window.location.reload();
+      };
 
     const onClickMyPage = () => {
         navigate('/mypage');
@@ -40,6 +62,7 @@ export default function Header() {
     return (
         <Container>
             <LogoArea>
+                <Icon src={menu} onClick={() => {props.setIsSideBarOpen(true)}} />
                 <Logo src={logo} onClick={onClickLogo} />
             </LogoArea>
             <MenuArea>
@@ -49,27 +72,43 @@ export default function Header() {
                 </Menu>
             </MenuArea>
             <ButtonOuter>
-                {isLogin ? (
-                    <ButtonArea>
-                        <Button 
+                <ButtonArea>
+                    {loginState ? (
+                        <>
+                            <Button
+                                onClick={onClickPayment}
+                                style={{
+                                    display: isMobile ? "none" : "block",
+                                }}
+                            >
+                                요금제 플랜
+                            </Button>
+                            {isMobile ? (
+                                <Button onClick={onClickLogout}>
+                                    로그아웃
+                                </Button>
+                            ) : (
+                                <Button onClick={onClickMyPage}>
+                                    마이페이지
+                                </Button>
+                            )}
+                        </>
+                    ) : (
+                    <>
+                        <Button
                             onClick={onClickPayment}
                             style={{
-                                display: isMobile ? 'none' : 'block'
+                                display: isMobile ? "none" : "block",
                             }}
-                        >요금제 플랜</Button>
-                        <Button onClick={onClickMyPage}>마이페이지</Button>
-                    </ButtonArea>
-                ) : (
-                    <ButtonArea>
-                        <Button 
-                            onClick={onClickPayment}
-                            style={{
-                                display: isMobile ? 'none' : 'block'
-                            }}
-                        >요금제 플랜</Button>
-                        <Button onClick={onClickLogin}>로그인</Button>
-                    </ButtonArea>     
-                )}
+                        >
+                            요금제 플랜
+                        </Button>
+                        <Button onClick={onClickLogin}>
+                            로그인
+                        </Button>
+                    </>
+                    )}
+                </ButtonArea>
             </ButtonOuter>
         </Container>
     );
@@ -93,6 +132,18 @@ const LogoArea = styled.div`
     align-items: center;
     margin-left: 28px;
 `;
+
+const Icon = styled.img`
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    cursor: pointer;
+    display: none;
+    @media (max-width: 768px) {
+        display: block;
+    }
+`;
+
 
 const Logo = styled.img`
     width: 73px;

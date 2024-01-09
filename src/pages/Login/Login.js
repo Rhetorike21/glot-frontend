@@ -99,7 +99,7 @@ export default function Login() {
                             아이디
                         </Naming>
                         <Input 
-                            placeholder="아이디를 입력해주세요"
+                            placeholder="아이디를 입력해 주세요"
                             type='text'
                             value={userId}
                             onChange={(e) => setUserId(e.target.value)}
@@ -112,7 +112,7 @@ export default function Login() {
                             비밀번호
                         </Naming>
                         <Input 
-                            placeholder="비밀번호를 입력해주세요"
+                            placeholder="비밀번호를 입력해 주세요"
                             type='password'
                             value={userPw}
                             onChange={(e) => setUserPw(e.target.value)}
@@ -137,7 +137,7 @@ export default function Login() {
                     <SubArea>
                         <SearchButton>
                             <SubButton onClick={onClickSignUp}>
-                                회원가입
+                                회원 가입
                             </SubButton>
                             <SubButton onClick={onClickIdSearch}>
                                 아이디 찾기

@@ -7,7 +7,7 @@ import styled from "styled-components";
 
 import Header from "../../components/Header";
 
-import MyInfoApi from "../../services/MyInfo";
+import { UseGetApi } from "../../services/http";
 import MyInfoEditApi from "../../services/MyInfoEdit";
 import LogoutApi from "../../services/Logout";
 import MobileApi from "../../services/MobileAuth";
@@ -47,19 +47,18 @@ export default function Mypage() {
         }
     }
 
-    useEffect(() => {
-        const getMyInfo = async () => {
-            try {
-                const response = await MyInfoApi();
-                setMyInfo(response);
-            }
-            catch (error) {
-                console.log(error);
-            }
+    const fetchData = async () => {
+        try {
+            const res = await UseGetApi('/user/info', { auth: localStorage.getItem('token') });
+            setMyInfo(res);
+        } catch (err) {
+            console.error(err);
         }
-        getMyInfo();
-    }
-    , []);
+    };     
+
+    useEffect(() => {
+        fetchData();
+    }, []);
 
     const onClickEdit = async () => {
         try {

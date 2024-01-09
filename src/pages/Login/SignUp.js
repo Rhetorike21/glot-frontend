@@ -184,7 +184,7 @@ export default function SignUp() {
                     >
                     </Input>
                     <Naming>
-                        휴대폰 전화번호 <Star>*</Star>
+                        휴대 전화번호 <Star>*</Star>
                     </Naming>
                     <InputOuter
                         style={{
@@ -206,7 +206,7 @@ export default function SignUp() {
                         </InputButton>
                     </InputOuter>
                     <Naming>
-                        인증번호 <Star>*</Star>
+                        인증 번호 <Star>*</Star>
                     </Naming>
                     <InputOuter
                         style={{
@@ -240,7 +240,7 @@ export default function SignUp() {
                         아이디 <Star>*</Star>
                     </Naming>
                     <Input
-                        placeholder="아이디"
+                        placeholder="아이디를 입력해 주세요"
                         type='text'
                         value={userId}
                         onChange={(e) => setUserId(e.target.value)}
@@ -301,7 +301,7 @@ export default function SignUp() {
                     >
                     </Input>
                     <Naming>
-                        휴대전화번호 <Star>*</Star>
+                        휴대 전화번호 <Star>*</Star>
                     </Naming>
                     <InputOuter
                         style={{
@@ -309,7 +309,7 @@ export default function SignUp() {
                         }}
                     >
                         <ShortInput
-                            placeholder='휴대전화번호를 입력해주세요'
+                            placeholder='휴대전화번호를 입력해 주세요'
                             type='text'
                             value={userMobile}
                             onChange={(e) => setUserMobile(e.target.value)}
@@ -323,7 +323,7 @@ export default function SignUp() {
                         </InputButton>
                     </InputOuter>
                     <Naming>
-                        인증번호 <Star>*</Star>
+                        인증 번호 <Star>*</Star>
                     </Naming>
                     <InputOuter
                         style={{
@@ -357,7 +357,7 @@ export default function SignUp() {
                         아이디 <Star>*</Star>
                     </Naming>
                     <Input
-                        placeholder="아이디"
+                        placeholder="아이디를 입력해 주세요"
                         type='text'
                         value={userId}
                         onChange={(e) => setUserId(e.target.value)}

@@ -106,7 +106,7 @@ export default function ChangePw() {
                             </Naming>
                             <InputOuter>
                                 <Input
-                                    placeholder="아이디를 입력해주세요"
+                                    placeholder="아이디를 입력해 주세요"
                                     type="text"
                                     value={userId}
                                     onChange={(e) => setUserId(e.target.value)}
@@ -117,7 +117,7 @@ export default function ChangePw() {
                             </Naming>
                             <InputOuter>
                                 <Input
-                                    placeholder="이름을 입력해주세요"
+                                    placeholder="이름을 입력해 주세요"
                                     type="text"
                                     value={userName}
                                     onChange={(e) => setUserName(e.target.value)}
@@ -139,11 +139,11 @@ export default function ChangePw() {
                                 </InputButton>
                             </InputOuter>
                             <Naming>
-                                인증번호
+                                인증 번호
                             </Naming>
                             <InputOuter>
                                 <Input
-                                    placeholder='인증번호를 입력하세요'
+                                    placeholder='인증 번호'
                                     type='text'
                                     style={{ width: "73%"}}
                                     value={userMobileCode}
@@ -161,7 +161,7 @@ export default function ChangePw() {
                             </Naming>
                             <InputOuter>
                                 <Input
-                                    placeholder="아이디를 입력해주세요"
+                                    placeholder="아이디를 입력해 주세요"
                                     type="text"
                                     value={userId}
                                     onChange={(e) => setUserId(e.target.value)}

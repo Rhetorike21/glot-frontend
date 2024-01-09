@@ -32,6 +32,10 @@ const ModalContainer = styled.div`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    @media (max-width: 768px) {
+        width: 327px;
+        padding: 10px 15px;
+    }
 `;
 
 const Text = styled.div`
@@ -45,6 +49,10 @@ const Text = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    @media (max-width: 768px) {
+        font-size: 10px;
+        line-height: 16px;
+    }
 `;
 
 const Button = styled.div`
@@ -55,4 +63,8 @@ const Button = styled.div`
     background-size: cover;
     margin-left: 16px;
     cursor: pointer;
+    @media (max-width: 768px) {
+        width: 22px;
+        height: 14px;
+    }
 `;
